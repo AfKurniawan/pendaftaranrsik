@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/green_A700"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="@dimen/spacing_large"
+        android:scrollbars="none"
+        android:scrollingCache="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <ImageView
+            android:id="@+id/qr_code2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/logo_round_bg" />
+
+
+
+        <TextView
+            android:id="@+id/tv_no_rm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="0000000"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/grey_60"
+            android:textColorHint="@color/green_A700"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tv_no_barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="0000000"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/grey_60"
+            android:textColorHint="@color/green_A700"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:text="Nomor Antrian Anda"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/green_A700" />
+
+
+
+        <EditText
+            android:id="@+id/et_nomor_antri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="1A0020"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/grey_60"
+            android:textColorHint="@color/green_500"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_large"/>
+
+
+       <!-- <TextView
+            android:id="@+id/title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:text="Nomor RM"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/green_A700" />
+-->
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green_700"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+
+
+
+        <EditText
+            android:id="@+id/et_nama_pasien"
+            android:drawableLeft="@drawable/ic_patient"
+            android:layout_width="match_parent"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Nama Pasien"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
+            android:id="@+id/et_nama_poli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_poli2"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Poli Mata"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
+            android:id="@+id/tv_penjamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_contract"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Penjamin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
+            android:id="@+id/et_nama_dokter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_dokter2"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="dr. Nama Dokter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
+            android:id="@+id/et_jadwal_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Jadwal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green_700"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_syarat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textColor="@color/grey_60" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green_700"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ketentuan"
+                android:textSize="12dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tv_syarat_bpjs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/grey_60" />
+
+
+
+            <TextView
+                android:id="@+id/tv_syarat_ktp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="3. KTP/KK"
+                android:textSize="12dp"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tv_syarat_surat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="2. Surat Kontrol"
+                android:textSize="12dp"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Syarat dan ketentuan berlaku"
+                android:textSize="10dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textColor="@color/grey_60" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_medium"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+
+
+
+
+                <EditText
+                    android:id="@+id/et_alamat_dialog2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/spacing_mlarge"
+                    android:layout_marginLeft="@dimen/spacing_middle"
+                    android:background="@android:color/transparent"
+                    android:focusable="false"
+                    android:visibility="gone"
+                    android:textSize="14dp"
+                    android:drawableLeft="@drawable/ic_home"
+                    android:gravity="left"
+                    android:text="Jl. Rambutan No.02 Solo, Jawa Tengah"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/grey_60"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

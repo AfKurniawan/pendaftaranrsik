@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_medium"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green_A700">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Konfirmasi Pendaftaran"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_mlarge">
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gdpr_privacy_policy"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60" />
+
+
+
+
+
+
+
+        
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mxlarge"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_norm_konfirmasi"
+                android:drawableLeft="@drawable/ic_clipboard"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="No RM"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_60"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_penjamin_konfirmasi"
+                android:drawableLeft="@drawable/ic_contract"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Jenis Penjamin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_60"
+                android:textStyle="bold" />
+
+
+
+
+            <EditText
+                android:id="@+id/et_nama_konfirmasi"
+                android:drawableLeft="@drawable/ic_patient"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:gravity="left"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Nama Pasien"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_60"
+                android:textStyle="bold" />
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/et_alamat_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:drawableLeft="@drawable/ic_house"
+            android:gravity="left"
+            android:text="Jl. Rambutan No.02 Solo, Jawa Tengah"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/grey_60"
+            android:textStyle="bold" />
+
+
+
+        <EditText
+            android:id="@+id/et_poli_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:drawableLeft="@drawable/ic_poli2"
+            android:gravity="left"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Poli Mata"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/grey_60"
+            android:textStyle="bold" />
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/et_dokter_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_dokter2"
+            android:gravity="left"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Dokter"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/grey_60"
+            android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="@dimen/spacing_medium"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_decline"
+            style="@style/Button.Primary.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TIDAK"
+            android:textColor="@color/cyan_700" />
+
+        <Button
+            android:id="@+id/bt_accept"
+            style="@style/Button.Primary.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="YA"
+            android:textColor="@color/cyan_700" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

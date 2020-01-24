@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_medium"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green_A700">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_small">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Detail Pendaftaran"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_small">
+
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/spacing_large">
+
+            <ImageView
+                android:id="@+id/qr_code2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo_round_bg" />
+
+
+            <TextView
+                android:id="@+id/tv_no_rm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="0000000"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/grey_60"
+                android:textColorHint="@color/green_500"
+                android:textSize="18dp" />
+
+
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+           <!-- <TextView
+                android:id="@+id/title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:text="Nomor RM"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/green_A700" />-->
+
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:text="Nomor Antrian Anda"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/green_A700" />
+
+
+            <EditText
+                android:id="@+id/et_jam_antrian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:background="@android:color/transparent"
+                android:text="Jam Antrian"
+                android:visibility="gone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_800"/>
+
+
+
+            <EditText
+                android:id="@+id/et_nomor_antri_dialog2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="-"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/grey_60"
+                android:textColorHint="@color/green_500"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/et_nomor_antrian_thok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="-"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/grey_60"
+                android:textColorHint="@color/green_500"
+                android:textSize="20dp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green_700"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_id_jadwal_dialog"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Id Jadwal"
+                android:visibility="gone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60" />
+
+            <EditText
+                android:id="@+id/et_nama_dialog2"
+                android:drawableLeft="@drawable/ic_patient"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Nama Pasien"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+
+            <EditText
+                android:id="@+id/et_alamat_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:visibility="gone"
+                android:textSize="12dp"
+                android:drawableLeft="@drawable/ic_home"
+                android:gravity="left"
+                android:text="Jl. Rambutan No.02 Solo, Jawa Tengah"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+
+
+
+
+            <EditText
+                android:id="@+id/et_poli_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_poli2"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Poli Mata"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <EditText
+                android:id="@+id/et_penjamin_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_contract"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Penjamin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_param_bpjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="BPJS"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_param_surat_kt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Surat Kontrol"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+
+            <EditText
+                android:id="@+id/et_param_ktp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="KTP"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_param_noantri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:visibility="gone"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="noantri"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_param_nobarcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:visibility="gone"
+                android:text="nobarcode"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+
+            <EditText
+                android:id="@+id/et_dokter_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_dokter2"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="dr. Nama Dokter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <EditText
+                android:id="@+id/et_tanggal_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Jam"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <TextView
+                android:id="@+id/tv_jam_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Jam"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+
+
+            <EditText
+                android:id="@+id/et_id_dokter_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_doctor"
+                android:gravity="left"
+                android:textSize="11dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="@string/id_dokter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_kd_dokter_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_doctor"
+                android:gravity="left"
+                android:textSize="11dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="@string/id_dokter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_kd_poli_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_doctor"
+                android:gravity="left"
+                android:textSize="11dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="@string/id_dokter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_praktek_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_doctor"
+                android:gravity="left"
+                android:textSize="11dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="@string/id_dokter"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <EditText
+                android:id="@+id/et_id_poli_dialog2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_doctor"
+                android:gravity="left"
+                android:textSize="11dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:visibility="gone"
+                android:text="@string/id_poli"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green_700"/>
+
+
+
+
+
+
+
+
+           <!-- <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green_700"/>-->
+
+
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ketentuan"
+                android:textSize="10dp"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Kartu BPJS"
+                android:textSize="10dp"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Surat Kontrol"
+                android:textSize="10dp"
+                android:textColor="@color/grey_60" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_syarat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:textColor="@color/grey_60" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/green_700"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ketentuan"
+                    android:textSize="12dp"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:textColor="@color/grey_60" />
+
+                <TextView
+                    android:id="@+id/tv_syarat_bpjs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:textColor="@color/grey_60" />
+
+
+
+                <TextView
+                    android:id="@+id/tv_syarat_ktp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:textColor="@color/grey_60" />
+
+                <TextView
+                    android:id="@+id/tv_syarat_surat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:textColor="@color/grey_60" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Syarat dan ketentuan berlaku"
+                    android:textSize="10dp"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:textColor="@color/grey_60" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+        </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/lyt_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bt_booking_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_rounded_primary"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:paddingLeft="@dimen/spacing_mlarge"
+            android:paddingRight="@dimen/spacing_mlarge"
+            android:text="Oke"
+            android:textColor="@android:color/white" />
+
+        <ProgressBar
+            android:id="@+id/pb_dialog"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

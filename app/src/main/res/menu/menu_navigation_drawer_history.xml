@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item
+            android:id="@+id/nav_pendaftaran"
+            android:icon="@drawable/ic_register"
+            android:title="Pendaftaran Poli" />
+
+        <item
+            android:id="@+id/menu_hari_ini"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/jadwal_hari_ini" />
+        <item
+            android:id="@+id/nav_all_jadwal_history"
+            android:icon="@drawable/ic_calendar_today"
+            android:title="Lihat Semua Jadwal" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_log_out"
+            android:title="Logout" />
+
+    <!--<group
+        android:id="@+id/grp_2"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help"
+            android:title="Help" />
+    </group>-->
+
+</menu>

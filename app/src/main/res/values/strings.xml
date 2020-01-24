@@ -1,0 +1,73 @@
+<resources>
+
+    <string name="version">1.7.2</string>
+
+
+    <string name="app_name">RSI Klaten</string>
+    <string name="login">LOGIN</string>
+    <string name="daftar">DAFTAR</string>
+    <string name="password">PASSWORD</string>
+    <string name="jadwal_hari_ini">Jadwal Poli Hari Ini</string>
+    <string name="jadwal_poli_besok">Jadwal Poli Besok</string>
+
+    <string name="gdpr_privacy_policy">Apakah Anda akan melanjutkan pemeriksaan dengan data sebagai berikut :</string>
+    <string name="ketentuan">Persyaratan yang harus dilengkapi</string>
+    <string name="syarat">Anda akan dilayani pada Tanggal</string>
+    <string name="syarat_2">, Perkiraan dilayani pukul 08:55 WIB. Dimohon datang sebelumnya, antrian ini dapat digunakan apabila anda datang lebih dari 15 menit dari perkiraan waktu pelayanan</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="pasien_baru">Pasien Baru?</string>
+    <string name="login_email">EMAIL</string>
+    <string name="HIDE">HIDE</string>
+    <string name="SAVE">SAVE</string>
+    <string name="e_form_user_kosong">Email Harus Di Isi</string>
+    <string name="e_form_pass_kosong">Password Belum Di Isi</string>
+    <string name="e_cari_pasien">Nomor Register belum diisi</string>
+    <string name="periksa_credential_login">Akun Belum Terdaftar atau Ada yang salah</string>
+    <string name="coba_lagi">Coba Lagi</string>
+    <string name="update">Perbarui</string>
+    <string name="user_credential_error">Maaf </string>
+    <string name="register_error">Silahkan periksa kembali</string>
+    <string name="register_gagal">Akun Sudah Terdaftar</string>
+    <string name="username">Username</string>
+    <string name="btn_daftar">DAFTAR</string>
+    <string name="alamat_lengkap">Alamat Lengkap</string>
+    <string name="no_rm">No Rm</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="form_harus_diisi">Form Wajib Diisi</string>
+    <string name="account_berhasil">Akun Berhasil Dibuat</string>
+    <string name="silahkan_lanjutkan">Silahkan Lanjutkan</string>
+    <string name="lanjut">Lanjutkan</string>
+    <string name="user_sudah_terdaftar">Akun Sudah Terdaftar, Silahkan Login untuk melanjutkan</string>
+    <string name="search">Cari</string>
+    <string name="type_name">Ketik Nama</string>
+    <string name="nodata">Belum Ada Jadwal</string>
+    <string name="belum_ada_jadwal">Jadwal Poli Untuk Besok Tidak Tersedia</string>
+    <string name="nomor_antrian">Nomor Antrian</string>
+    <string name="detail_booking">Booking Detail</string>
+    <string name="nama_dokter">Nama Dokter</string>
+    <string name="id_dokter">ID Dokter</string>
+    <string name="kd_dokter">KD Dokter</string>
+    <string name="kd_poli">KD Poli</string>
+    <string name="id_poli">ID Poli</string>
+    <string name="nama_poli">Nama Poli</string>
+    <string name="praktek">Praktek</string>
+    <string name="tanggal_kontrol">Tanggal Kontrol</string>
+    <string name="belum_foto_bpjs">Anda belum melampirkan BPJS</string>
+    <string name="belum_foto_kontrol">Anda belum melampirkan Surat Kontrol</string>
+    <string name="toolbar_history_list">History Pendaftaran Pasien</string>
+    <string name="toolbar_all_jadwal">Semua Jadwal</string>
+    <string name="error_sudah_daftar">Anda sudah daftar untuk periksa besok</string>
+    <string name="belum_saatnya_kontrol">Anda belum saatnya kontrol</string>
+    <string name="error_dokter_limit">Dokter Poli sudah mencapai antrian maksimal, harap datang langsung ke RSI Klaten untuk mendaftar</string>
+    <string name="hari">Hari</string>
+    <string name="jam">Jam</string>
+    <string name="penjamin">Penjamin</string>
+    <string name="jadwal">Jadwal</string>
+    <string name="foto_ktp">Foto Ktp</string>
+    <string name="foto_bpjs">Foto BPJS</string>
+    <string name="surat_kt">Surat Kontrol</string>
+    <string name="nomor_antrian_idjadwal_iddokter">Antrian-idjadwal-iddokter-norm</string>
+    <string name="error_update">Silahkan update versi aplikasi untuk dapat menggunakan kembali layanan kami</string>
+</resources>
+

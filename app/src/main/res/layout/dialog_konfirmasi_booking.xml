@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/green_500">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="@string/detail_booking"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            <View android:layout_width="0dp"
+                  android:layout_height="@dimen/spacing_xlarge"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="0dp"
+              android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
+                android:id="@+id/et_nama_dialog_konfirm"
+                android:focusable="false"
+                android:text="Sakinah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/grey_60"
+                android:textStyle="bold" />
+        <EditText
+                android:id="@+id/et_alamat_dialog_konfirm"
+                android:focusable="false"
+                android:text="Helo Alamat"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_60"
+                android:textStyle="bold" />
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_small"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <ImageView android:id="@+id/icon_tgl"
+                       android:tint="@color/green_A700"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:adjustViewBounds="true"
+                       android:maxWidth="15dp"
+                       android:maxHeight="15dp"
+                       android:scaleType="fitCenter"
+                       android:layout_marginLeft="10dp"
+                       android:src="@drawable/ic_tgl"/>
+            <View
+                    android:layout_width="@dimen/spacing_xlarge"
+                    android:layout_height="0dp"/>
+
+            <EditText
+                    android:id="@+id/et_tgl_kontrol_dialog_konfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="2018-09-10"
+                    android:background="@android:color/transparent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/grey_60"
+                    android:textColorHint="@color/green_500"/>
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_small"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+        <ImageView android:id="@+id/icon_poli"
+                   android:tint="@color/green_A700"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:adjustViewBounds="true"
+                   android:maxWidth="15dp"
+                   android:maxHeight="15dp"
+                   android:scaleType="fitCenter"
+                   android:layout_marginLeft="10dp"
+                   android:src="@drawable/ic_poli"/>
+            <View
+                    android:layout_width="@dimen/spacing_xlarge"
+                    android:layout_height="0dp"/>
+
+            <EditText
+                    android:id="@+id/et_poli_dialog_konfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="Poli Mata"
+                    android:textAlignment="center"
+                    android:background="@android:color/transparent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/grey_60"
+                    android:textColorHint="@color/green_500"/>
+
+        </LinearLayout>
+
+
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_xmedium"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+            <ImageView android:id="@+id/ic_dokter"
+                       android:tint="@color/green_A700"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:adjustViewBounds="true"
+                       android:maxWidth="15dp"
+                       android:maxHeight="15dp"
+                       android:scaleType="fitCenter"
+                       android:layout_marginLeft="10dp"
+                       android:src="@drawable/ic_dokter"/>
+
+
+            <View
+                    android:layout_width="@dimen/spacing_xlarge"
+                    android:layout_height="0dp"/>
+
+            <EditText
+                    android:id="@+id/et_dokter_dialog_konfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="dr. Fajar Kurniawan"
+                    android:textAlignment="center"
+                    android:background="@android:color/transparent"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/grey_60"
+                    android:textColorHint="@color/green_500"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_xlarge"/>
+
+    <LinearLayout
+        android:id="@+id/lyt_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bt_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_rounded_primary"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:paddingLeft="@dimen/spacing_mlarge"
+            android:paddingRight="@dimen/spacing_mlarge"
+            android:text="Oke"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
