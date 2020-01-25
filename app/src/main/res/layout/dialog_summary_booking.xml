@@ -217,6 +217,8 @@
 
 
 
+
+
             <EditText
                 android:id="@+id/et_poli_dialog2"
                 android:layout_width="match_parent"
@@ -250,6 +252,10 @@
                 android:text="Penjamin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/grey_60"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
 
             <EditText
                 android:id="@+id/et_tipe_poli_dialog"

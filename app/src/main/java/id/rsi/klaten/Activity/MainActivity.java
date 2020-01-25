@@ -647,6 +647,7 @@ public class MainActivity extends AppCompatActivity {
     // NEW FITUR START///////////////////////////////////////
     private void initSpinnerEksekutif(){
 
+
         MaterialSpinner spinner = findViewById(R.id.spinner_eksekutiff);
         spinner.setItems( "Pilih Tipe Poli", "Umum", "Eksekutif");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
@@ -660,6 +661,8 @@ public class MainActivity extends AppCompatActivity {
                         cvBpjs.setVisibility(GONE);
                         cvKtp.setVisibility(GONE);
                         cvKartu.setVisibility(GONE);
+                        Log.d(TAG, "onItemSelected: " + item);
+
                         break;
                     case 1:
                         cvBpjs.setVisibility(View.GONE);
@@ -669,6 +672,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
+
                         cekTglKontrol();
                         break;
 
