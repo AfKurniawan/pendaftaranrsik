@@ -58,7 +58,7 @@ public class Const {
 
     //public static final String BOOKING_URL = ROOT_URL + "output.php?action=insert_booking";
 
-    public static final String BOOKING_URL = ROOT_URL + "search/insert_booking.php";
+    public static final String BOOKING_URL = ROOT_URL + "search/insert_booking_new.php";
 
     public static final String CEK_BOOKING_URL = ROOT_URL + "search/limit_booking.php";
 

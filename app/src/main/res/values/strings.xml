@@ -9,6 +9,7 @@
     <string name="password">PASSWORD</string>
     <string name="jadwal_hari_ini">Jadwal Poli Hari Ini</string>
     <string name="jadwal_poli_besok">Jadwal Poli Besok</string>
+    <string name="tipe_poli">Tipe Poli</string>
 
     <string name="gdpr_privacy_policy">Apakah Anda akan melanjutkan pemeriksaan dengan data sebagai berikut :</string>
     <string name="ketentuan">Persyaratan yang harus dilengkapi</string>

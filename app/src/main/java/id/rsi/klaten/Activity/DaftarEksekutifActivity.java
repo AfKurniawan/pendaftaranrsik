@@ -64,7 +64,7 @@ import static id.rsi.klaten.Utils.Const.REQCODEGALLERYKONTROL;
 import static id.rsi.klaten.Utils.Const.REQCODEKTP;
 
 
-public class MainActivity extends AppCompatActivity {
+public class DaftarEksekutifActivity extends AppCompatActivity {
 
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
@@ -102,10 +102,7 @@ public class MainActivity extends AppCompatActivity {
             btnCariPasien,
             btnSummary;
 
-    // NEW FITUR START ///////////////////////////////////////
-    MaterialSpinner spnPenjamin, spnTipePoli;
-    // NEW FITUR END ///////////////////////////////////////
-
+    MaterialSpinner spnPenjamin;
 
     TextView tvLampiranBpjs,
             tvLampiranKartu,
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_daftar_eksekutif);
         sessionManager = new SessionManager(getApplicationContext());
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -184,8 +181,6 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
 
         initSpinner();
-
-        initSpinnerEksekutif();
 
         initSimpan();
 
@@ -297,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(DaftarEksekutifActivity.this);
 
         requestQueue.add(stringRequest);
 
@@ -324,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        Intent intent = new Intent(MainActivity.this, JadwalListActivity.class);
+                        Intent intent = new Intent(DaftarEksekutifActivity.this, JadwalListActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -354,8 +349,6 @@ public class MainActivity extends AppCompatActivity {
         etJenkel = findViewById(R.id.et_jenkel);
         etAlamat = findViewById(R.id.et_alamat);
         spnPenjamin = findViewById(R.id.spinner);
-
-        spnTipePoli = findViewById(R.id.spinner_eksekutiff);
         etCariPasien = findViewById(R.id.et_cari_pasien);
 
 
@@ -625,6 +618,15 @@ public class MainActivity extends AppCompatActivity {
                         cvKartu.setVisibility(GONE);
                         break;
                     case 1:
+                        cvBpjs.setVisibility(View.GONE);
+                        cvKartu.setVisibility(View.GONE);
+                        cvKtp.setVisibility(GONE);
+                        btnSimpan.setVisibility(VISIBLE);
+                        break;
+
+                    case 2:
+                        cekTglKontrol();
+                        break;
 
                     case 3:
                         cvBpjs.setVisibility(View.GONE);
@@ -633,10 +635,6 @@ public class MainActivity extends AppCompatActivity {
                         btnSimpan.setVisibility(VISIBLE);
                         break;
 
-                    case 2:
-                        cekTglKontrol();
-                        break;
-
                 }
 
             }
@@ -644,41 +642,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // NEW FITUR START///////////////////////////////////////
-    private void initSpinnerEksekutif(){
-
-        MaterialSpinner spinner = findViewById(R.id.spinner_eksekutiff);
-        spinner.setItems( "Pilih Tipe Poli", "Umum", "Eksekutif");
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-
-                switch (position) {
-
-                    case 0:
-                        btnSimpan.setVisibility(GONE);
-                        cvBpjs.setVisibility(GONE);
-                        cvKtp.setVisibility(GONE);
-                        cvKartu.setVisibility(GONE);
-                        break;
-                    case 1:
-                        cvBpjs.setVisibility(View.GONE);
-                        cvKartu.setVisibility(View.GONE);
-                        cvKtp.setVisibility(GONE);
-                        btnSimpan.setVisibility(VISIBLE);
-                        break;
-
-                    case 2:
-                        cekTglKontrol();
-                        break;
-
-                }
-
-            }
-        });
-
-    }
-    // NEW FITUR END ///////////////////////////////////////
 
 
     public static void saveToPreferences(Context context, String kunci, Boolean allowed) {
@@ -710,7 +673,7 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        ActivityCompat.requestPermissions(MainActivity.this,
+                        ActivityCompat.requestPermissions(DaftarEksekutifActivity.this,
                                 new String[]{Manifest.permission.CAMERA},
                                 MY_PERMISSIONS_REQUEST_CAMERA);
 
@@ -834,7 +797,7 @@ public class MainActivity extends AppCompatActivity {
         ((Button) dialog.findViewById(R.id.bt_opt_gallery)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(getApplicationContext(), "Button Decline Clicked", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "Button Decline Clicked", Toast.LENGTH_SHORT).show();
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto , REQCODEGALLERYBPJS);//one can be replaced with any action code
@@ -975,13 +938,6 @@ public class MainActivity extends AppCompatActivity {
                 mEditor.putString(getString(R.string.penjamin), penjamin);
                 mEditor.commit();
 
-                // NEW FITUR START //////////////////////////////////////////////
-                String tipePoli = spnTipePoli.getText().toString();
-                mEditor.putString(getString(R.string.tipe_poli), tipePoli);
-                mEditor.commit();
-                // NEW FITUR END /////////////////////////////////////////////
-
-
                 String namaPoli = etNamaPoli.getText().toString();
                 mEditor.putString(getString(R.string.nama_poli), namaPoli);
                 mEditor.commit();
@@ -1046,7 +1002,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         dialog.dismiss();
 
-                        Intent intent = new Intent(MainActivity.this, HistoryListActivity.class);
+                        Intent intent = new Intent(DaftarEksekutifActivity.this, HistoryListActivity.class);
                         startActivity(intent);
 
                         btnSimpan.setVisibility(GONE);
@@ -1519,15 +1475,6 @@ public class MainActivity extends AppCompatActivity {
                 params.put("no_rm", etCariPasien.getText().toString());
                 params.put("nama_pasien", etNamaPasien.getText().toString());
                 params.put("penjamin", spnPenjamin.getText().toString());
-
-                // NEW FITUR START ////////////////////////////////////////////////
-
-                params.put("jns_daftar", spnTipePoli.getText().toString());
-
-                // NEW FITUR END /////////////////////////
-
-
-
                 params.put("foto_bpjs", etUpload.getText().toString());
                 params.put("foto_ktp",etKtp.getText().toString());
                 params.put("foto_surat_kontrol", etUploadCard.getText().toString());
@@ -1542,7 +1489,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(DaftarEksekutifActivity.this);
 
         requestQueue.add(stringRequest);
     }
@@ -1553,7 +1500,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent history = new Intent(MainActivity.this, HistoryListActivity.class);
+                Intent history = new Intent(DaftarEksekutifActivity.this, HistoryListActivity.class);
                 startActivity(history);
 
 
@@ -1576,7 +1523,6 @@ public class MainActivity extends AppCompatActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
 
-
         //DEFINE DIALOG COMPONENTS
         TextView idJadwalDialog = dialog.findViewById(R.id.tv_id_jadwal_dialog);
         final EditText namaPasienDialog = dialog.findViewById(R.id.et_nama_dialog2);
@@ -1593,10 +1539,6 @@ public class MainActivity extends AppCompatActivity {
         EditText namaDokterDialog = dialog.findViewById(R.id.et_dokter_dialog2);
         EditText idPoliDialog = dialog.findViewById(R.id.et_id_poli_dialog2);
         final EditText penjaminDialog = dialog.findViewById(R.id.et_penjamin_dialog);
-
-        // NEW FITUR START ///////////////////////////////////////
-        final EditText typePoliDialog = dialog.findViewById(R.id.et_tipe_poli_dialog);
-        // NEW FITUR END ///////////////////////////////////////
 
         final ProgressBar pb = dialog.findViewById(R.id.pb_dialog);
         pb.setVisibility(VISIBLE);
@@ -1751,12 +1693,6 @@ public class MainActivity extends AppCompatActivity {
 
         String penjamin = mPreferences.getString(getString(R.string.penjamin), "");
         penjaminDialog.setText(penjamin);
-
-// NEW FITUR START ///////////////////////////////////////
-        String typePoli = mPreferences.getString(getString(R.string.tipe_poli), "");
-        typePoliDialog.setText(typePoli);
-// NEW FITUR END ///////////////////////////////////////
-
 
         String fotoBpjs = mPreferences.getString(getString(R.string.foto_bpjs), "");
         etParamBpjs.setText(fotoBpjs);
@@ -1930,7 +1866,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(DaftarEksekutifActivity.this);
 
         requestQueue.add(stringRequest);
 
@@ -2050,7 +1986,7 @@ public class MainActivity extends AppCompatActivity {
                 /*cvBpjs.setVisibility(GONE);
                 cvKartu.setVisibility(GONE);
                 getDataPasien();*/
-                        Intent intent = new Intent(MainActivity.this, JadwalListActivity.class);
+                        Intent intent = new Intent(DaftarEksekutifActivity.this, JadwalListActivity.class);
                         startActivity(intent);
                         finish();
 
@@ -2188,7 +2124,7 @@ public class MainActivity extends AppCompatActivity {
                 btnSimpan.setVisibility(GONE);
 
 
-                Intent listBooking = new Intent(MainActivity.this, HistoryListActivity.class);
+                Intent listBooking = new Intent(DaftarEksekutifActivity.this, HistoryListActivity.class);
                 startActivity(listBooking);
                 finish();
 
@@ -2271,7 +2207,7 @@ public class MainActivity extends AppCompatActivity {
                         if (showRationale) {
                             showAlert();
                         } else if (!showRationale) {
-                            saveToPreferences(MainActivity.this, ALLOW_KEY, true);
+                            saveToPreferences(DaftarEksekutifActivity.this, ALLOW_KEY, true);
                         }
                     }
                 }
