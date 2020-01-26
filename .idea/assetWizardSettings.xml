@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_calendar_today" />
-                            <entry key="sourceFile" value="D:\I-AM-I\ANDROID\RSIK\icon\calendar_today.svg" />
+                            <entry key="outputName" value="ic_lock" />
+                            <entry key="sourceFile" value="D:\I-AM-I\ANDROID\RSIK\icon\lock.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -182,9 +182,19 @@ public class HistoryListActivity extends AppCompatActivity {
                 if (id == R.id.nav_pendaftaran){
                     Intent intent = new Intent(HistoryListActivity.this, JadwalListActivity.class);
                     startActivity(intent);
-                } else if (id == R.id.nav_all_jadwal_history){
+                } else if (id == R.id.nav_all_jadwal_history) {
                     Intent intent = new Intent(HistoryListActivity.this, AllJadwalActivity.class);
                     startActivity(intent);
+
+                }else if (id == R.id.menu_hari_ini){
+                    Intent intent = new Intent(HistoryListActivity.this, JadwalPoliHariIni.class);
+                    startActivity(intent);
+
+
+                } else if (id == R.id.nav_ganti_password){
+                    Intent intent = new Intent(HistoryListActivity.this, GantiPasswordActivity.class);
+                    startActivity(intent);
+
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();
                 }
@@ -439,6 +449,7 @@ public class HistoryListActivity extends AppCompatActivity {
                                                 hObject.getString("no_antrian"),
                                                 hObject.getString("no_barcode"),
                                                 hObject.getString("penjamin"),
+                                                hObject.getString("jns_daftar"),
                                                 hObject.getString("nama_poli"),
                                                 hObject.getString("nama_lengkap"),
                                                 hObject.getString("tgl_booking"),

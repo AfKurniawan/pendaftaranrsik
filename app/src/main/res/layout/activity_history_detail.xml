@@ -194,6 +194,25 @@
             android:layout_height="@dimen/spacing_medium"/>
 
         <EditText
+            android:id="@+id/tv_jns_daftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_contract"
+            android:gravity="left"
+            android:textSize="14dp"
+            android:drawablePadding="@dimen/spacing_mlarge"
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:background="@android:color/transparent"
+            android:focusable="false"
+            android:text="Jenis Poli"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/grey_60"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_medium"/>
+
+        <EditText
             android:id="@+id/et_nama_dokter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

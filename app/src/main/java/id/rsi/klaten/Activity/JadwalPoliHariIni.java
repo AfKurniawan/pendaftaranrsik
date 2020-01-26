@@ -57,9 +57,11 @@ public class JadwalPoliHariIni extends AppCompatActivity implements SearchView.O
 
     ProgressBar progressBar;
     EditText etFilterHari, etEmail, etVersion;
-    TextView textDialogUpdate;
+    TextView textDialogUpdate, headerJadwal;
     RequestQueue queue;
     private SessionManager sessionManager;
+
+
 
 
 
@@ -95,6 +97,8 @@ public class JadwalPoliHariIni extends AppCompatActivity implements SearchView.O
         etVersion = findViewById(R.id.et_version);
         etVersion.setVisibility(View.GONE);
 
+        headerJadwal = findViewById(R.id.header_jadwal);
+
 
 
 
@@ -122,12 +126,56 @@ public class JadwalPoliHariIni extends AppCompatActivity implements SearchView.O
 
 
     private void initToolbar() {
+
+        /*TODAY*/
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+        String[] sekarangs = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String Harihariini = sekarangs[today.get(Calendar.DAY_OF_WEEK)];
+
+        /*BESOK*/
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+        Date haribesok = tomorrow.getTime();
+
+        SimpleDateFormat sdfHariIni = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalBesok = sdfHariIni.format(haribesok);
+
+        String[] besoks = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariBesok = besoks[tomorrow.get(Calendar.DAY_OF_WEEK)];
+
+
+
+        /*LUSA*/
+        Calendar lusa = Calendar.getInstance();
+        lusa.add(Calendar.DAY_OF_YEAR, 2);
+        Date besokLusa = lusa.getTime();
+
+        SimpleDateFormat dfsenin = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalLusa = dfsenin.format(besokLusa);
+
+        String[] lusas = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariLusa = lusas[lusa.get(Calendar.DAY_OF_WEEK)];
+
+
+
+
+
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle("Jadwal Poli Hari Ini");
+
+
+        actionBar.setTitle("Jadwal Poli");
         Tools.setSystemBarColor(this, R.color.overlay_dark_40);
     }
 
@@ -237,12 +285,82 @@ public class JadwalPoliHariIni extends AppCompatActivity implements SearchView.O
 
 
 
-
-
-
     public void initJadwalBesok() {
 
         TextView tvTanggal = findViewById(R.id.tv_today);
+
+        /*TODAY*/
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+
+        int jamSekarang = today.get(Calendar.HOUR_OF_DAY);
+
+        String timeNow = String.valueOf(jamSekarang);
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+        String[] sekarangs = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String Harihariini = sekarangs[today.get(Calendar.DAY_OF_WEEK)];
+
+        /*BESOK*/
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+        Date haribesok = tomorrow.getTime();
+
+        SimpleDateFormat sdfHariIni = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalBesok = sdfHariIni.format(haribesok);
+
+        String[] besoks = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariBesok = besoks[tomorrow.get(Calendar.DAY_OF_WEEK)];
+
+
+
+        /*LUSA*/
+        Calendar lusa = Calendar.getInstance();
+        lusa.add(Calendar.DAY_OF_YEAR, 2);
+        Date besokLusa = lusa.getTime();
+
+        SimpleDateFormat dfsenin = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalLusa = dfsenin.format(besokLusa);
+
+        String[] lusas = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariLusa = lusas[lusa.get(Calendar.DAY_OF_WEEK)];
+
+
+
+
+        if (Harihariini == "Sabtu") {
+
+            tvTanggal.setText(hariLusa + ", " + tanggalLusa);
+
+            headerJadwal.setText("Jadwal Poli Besok");
+
+            showDialogJadwalWeekend();
+
+
+
+        }else if(Harihariini == "Minggu"){
+
+
+            tvTanggal.setText(hariBesok +", " + tanggalBesok);
+            headerJadwal.setText("Jadwal Poli Besok");
+
+            showDialogJadwalWeekend();
+
+
+
+        } else {
+
+            tvTanggal.setText(Harihariini + ", " + tanggalHariIni);
+            headerJadwal.setText("Jadwal Poli Hari Ini");
+        }
+
+    }
+
+    public void showDialogJadwalWeekend(){
 
         /*TODAY*/
         Calendar today = Calendar.getInstance();
@@ -280,26 +398,86 @@ public class JadwalPoliHariIni extends AppCompatActivity implements SearchView.O
         String hariLusa = lusas[lusa.get(Calendar.DAY_OF_WEEK)];
 
 
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_jadwal_weekend);
+        dialog.setCancelable(true);
+
+        TextView title = dialog.findViewById(R.id.title_jadwal_weekend);
+        TextView content = dialog.findViewById(R.id.content_dialog_jadwal_weekend);
 
 
         if (Harihariini == "Sabtu") {
 
-            tvTanggal.setText("Senin, " + tanggalLusa);
+            title.setText("Jadwal Hari " + Harihariini + " Tidak tersedia");
+            content.setText("Mohon untuk mendaftar pada hari " + hariLusa + ", " + tanggalLusa);
+
+
+            ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent listBooking = new Intent(JadwalPoliHariIni.this, JadwalListActivity.class);
+                    startActivity(listBooking);
+                    finish();
+
+                    dialog.dismiss();
+
+                }
+            });
 
 
 
         }else if(Harihariini == "Minggu"){
 
+            title.setText("Jadwal Hari " + Harihariini + " Tidak tersedia");
+            content.setText("Mohon untuk mendaftar pada hari " + hariBesok + ", " + tanggalBesok);
 
-            tvTanggal.setText("Senin, " + tanggalBesok);
+            ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent listBooking = new Intent(JadwalPoliHariIni.this, JadwalListActivity.class);
+                    startActivity(listBooking);
+                    finish();
+
+                    dialog.dismiss();
+
+                }
+            });
 
 
 
         } else {
 
-            tvTanggal.setText(Harihariini + ", " + tanggalHariIni);
+            ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent listBooking = new Intent(JadwalPoliHariIni.this, JadwalPoliHariIni.class);
+                    startActivity(listBooking);
+                    finish();
+
+                    dialog.dismiss();
+
+                }
+            });
         }
 
+
+
+
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
     }
 
 

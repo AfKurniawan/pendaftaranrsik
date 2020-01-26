@@ -219,6 +219,10 @@ public class LoginActivity extends AppCompatActivity {
 
         sessionManager.setSavedPassword(etPassword.getText().toString());
         sessionManager.setSavedUserName(etEmail.getText().toString());
+
+
+
+
         sessionManager.setUserLoggedIn(true);
 
         progressBar.setVisibility(View.VISIBLE);

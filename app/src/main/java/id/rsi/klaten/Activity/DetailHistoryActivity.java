@@ -31,7 +31,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
 
     EditText etNomorAntrian, etNamaPasien, etNamaPoli, etNamaDokter, etTglKontrol;
     ImageView ivBarcode;
-    TextView tvSyarat, tvNamaPasien, tvNoRm, tvHari, tvSyaratBpjs, tvPenjamin, tvNoBarcode, tvSyaratSurat, tvSyaratKtp;
+    TextView tvSyarat, tvNamaPasien, tvNoRm, tvHari, tvSyaratBpjs, tvPenjamin, tvJnsDaftar, tvNoBarcode, tvSyaratSurat, tvSyaratKtp;
     RequestQueue queue;
     ProgressBar pb;
     private SharedPreferences mPreferences;
@@ -86,6 +86,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
         tvSyarat = findViewById(R.id.tv_syarat);
         tvHari = findViewById(R.id.et_jadwal_history);
         tvPenjamin = findViewById(R.id.tv_penjamin);
+        tvJnsDaftar = findViewById(R.id.tv_jns_daftar);
         tvSyaratBpjs = findViewById(R.id.tv_syarat_bpjs);
         tvSyaratSurat = findViewById(R.id.tv_syarat_surat);
         tvSyaratKtp = findViewById(R.id.tv_syarat_ktp);
@@ -126,6 +127,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
         String intentBarcode = data.getStringExtra("no_barcode");
         String intentNamaPasien = data.getStringExtra("nama_pasien");
         String intentPenjamin = data.getStringExtra("penjamin");
+        String intentJnsDaftar = data.getStringExtra("jns_daftar");
         String intentNoRm = data.getStringExtra("no_rm");
         String intentNamaPoli = data.getStringExtra("nama_poli");
         String intentNamaDokter = data.getStringExtra("nama_lengkap");
@@ -142,6 +144,18 @@ public class DetailHistoryActivity extends AppCompatActivity {
         etNamaPoli.setText(intentNamaPoli);
         etNamaDokter.setText(intentNamaDokter);
         tvHari.setText(intentHari + ", " + intentJam);
+
+
+
+        if (intentPenjamin.equals("Pilih Penjamin")){
+
+            tvPenjamin.setVisibility(View.GONE);
+            tvJnsDaftar.setText("Poli "+ intentJnsDaftar);
+
+        } else {
+
+            tvJnsDaftar.setVisibility(View.GONE);
+        }
 
         //String intentPenjaminOffice = data.getStringExtra("penjamin");
 

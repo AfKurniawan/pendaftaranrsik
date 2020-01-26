@@ -181,8 +181,13 @@ public class JadwalListActivity extends AppCompatActivity implements SearchView.
                     startActivity(intent);
 
 
-                } else if (id == R.id.nav_all_jadwal_poli){
+                } else if (id == R.id.nav_all_jadwal_poli) {
                     Intent intent = new Intent(JadwalListActivity.this, AllJadwalActivity.class);
+                    startActivity(intent);
+
+                } else if(id == R.id.nav_ganti_password){
+
+                    Intent intent = new Intent(JadwalListActivity.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
                 }  else if (id == R.id.nav_logout){

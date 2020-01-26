@@ -38,7 +38,9 @@ public class Const {
 
     public static final String  URL_CEK_VERSION = ROOT_URL + "search/cek_version.php";
 
-    public static final String URL_HISTORY = ROOT_URL + "search/get_history_booking.php";
+    public static final String URL_HISTORY = ROOT_URL + "search/get_history_booking_new.php";
+
+    public static final String URL_USER_DETAIL = ROOT_URL + "search/get_user_detail.php";
 
     public static final String URL_UPLOAD_BPJS = ROOT_URL + "upload_bpjs.php";
 
@@ -59,6 +61,8 @@ public class Const {
     //public static final String BOOKING_URL = ROOT_URL + "output.php?action=insert_booking";
 
     public static final String BOOKING_URL = ROOT_URL + "search/insert_booking_new.php";
+
+    public static final String GANTI_PASSWORD_URL = ROOT_URL + "search/ganti_password.php";
 
     public static final String CEK_BOOKING_URL = ROOT_URL + "search/limit_booking.php";
 

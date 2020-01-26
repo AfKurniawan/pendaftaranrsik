@@ -2,13 +2,13 @@ package id.rsi.klaten.Model;
 
 public class User {
 
-    private String alamat_email, nama_lengkap, no_telp, alamat_lengkap;
+    private String alamat_email, nama_lengkap, no_telpon, alamat_lengkap;
 
 
-    public User(String alamat_email, String nama_lengkap, String no_telp, String alamat_lengkap) {
+    public User(String alamat_email, String nama_lengkap, String no_telpon, String alamat_lengkap) {
         this.alamat_email = alamat_email;
         this.nama_lengkap = nama_lengkap;
-        this.no_telp = no_telp;
+        this.no_telpon = no_telpon;
         this.alamat_lengkap = alamat_lengkap;
 
 
@@ -27,7 +27,7 @@ public class User {
     }
 
     public String getNo_telp() {
-        return no_telp;
+        return no_telpon;
     }
 
 }

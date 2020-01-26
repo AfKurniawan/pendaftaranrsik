@@ -97,6 +97,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
         holder.tvHari.setText(bk.getHari()+", "+ bk.getJam());
         holder.tvPenjamin.setText(bk.getPenjamin());
 
+        if(bk.getPenjamin().equals("Pilih Penjamin")){
+
+            holder.tvPenjamin.setVisibility(View.GONE);
+            holder.tvJnsdaftar.setText("Poli " + bk.getJns_daftar());
+
+        } else {
+
+            holder.tvPenjamin.setVisibility(View.VISIBLE);
+            holder.tvJnsdaftar.setVisibility(View.GONE);
+        }
+
+
 
 
         holder.bk = bk;
@@ -117,7 +129,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
 
 
     class HolderData extends RecyclerView.ViewHolder {
-        TextView tvNamaPasien, tvNoRm, tvTglBooking, tvJam, tvHari, tvNoAntrian,  tvNamaPoli, tvNamaDokter, tvPenjamin;
+        TextView tvNamaPasien, tvNoRm, tvTglBooking, tvJam, tvHari, tvNoAntrian,  tvNamaPoli, tvNamaDokter, tvPenjamin, tvJnsdaftar;
         EditText etStatusDelete, etIdBooking, etNoBarcode;
         ImageView ivQrCode;
         LinearLayout btnLayout;
@@ -141,6 +153,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
             tvNamaPasien = (TextView) view.findViewById(R.id.tv_nama_pasien);
             tvNoRm = (TextView)view.findViewById(R.id.tv_no_rm);
             //tvPenjamin = (TextView) view.findViewById(R.id.tv_penjamin);
+
+            tvJnsdaftar = view.findViewById(R.id.tv_jns_daftar);
             tvNoAntrian = (TextView) view.findViewById(R.id.tv_no_antrian);
 
             etNoBarcode = (EditText) view.findViewById(R.id.et_no_barcode);
@@ -201,6 +215,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
                     update.putExtra("nama_pasien", bk.getNama_pasien());
                     update.putExtra("no_rm", bk.getNo_rm());
                     update.putExtra("penjamin", bk.getPenjamin());
+                    update.putExtra("jns_daftar", bk.getJns_daftar());
                     update.putExtra("nama_poli", bk.getNama_poli());
                     update.putExtra("nama_lengkap", bk.getNama_lengkap());
                     update.putExtra("hari", bk.getHari());
@@ -247,6 +262,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
                                             hObject.getString("no_antrian"),
                                             hObject.getString("no_barcode"),
                                             hObject.getString("penjamin"),
+                                            hObject.getString("jns_daftar"),
                                             hObject.getString("nama_poli"),
                                             hObject.getString("nama_lengkap"),
                                             hObject.getString("tgl_booking"),
@@ -265,6 +281,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
                                 tvNamaDokter.setText(bk.getNama_lengkap());
                                 tvNamaPoli.setText(bk.getNama_poli());
                                 tvTglBooking.setText(bk.getTgl_booking());
+                                tvJnsdaftar.setText(bk.getJns_daftar());
 
                             }
 

@@ -109,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvLampiranBpjs,
             tvLampiranKartu,
-            tvLampiranKtp;
+            tvLampiranKtp,
+            lblSpnPenjamin;
 
     ImageView fotoBpjs,
             fotoKartu,
@@ -157,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
         tvLampiranBpjs = findViewById(R.id.tv_lamp_bpjs);
         tvLampiranKartu = findViewById(R.id.tv_lampiran_kartu);
         tvLampiranKtp = findViewById(R.id.tv_lampiran_ktp);
+        lblSpnPenjamin = findViewById(R.id.label_spn_penjamin);
+        lblSpnPenjamin.setVisibility(View.GONE);
         cvBpjs = findViewById(R.id.cv_lampiran_bpjs);
         cvBpjs.setVisibility(GONE);
         cvKartu = findViewById(R.id.cv_lampiran_kartu);
@@ -169,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         etJumlahDokter = findViewById(R.id.et_jumlah_dokter);
         etJumlahDokter.setVisibility(GONE);
         jsonObject = new JSONObject();
+
 
 
 
@@ -353,9 +357,11 @@ public class MainActivity extends AppCompatActivity {
         etNamaPasien = findViewById(R.id.et_nama_pasien);
         etJenkel = findViewById(R.id.et_jenkel);
         etAlamat = findViewById(R.id.et_alamat);
-        spnPenjamin = findViewById(R.id.spinner);
+        spnPenjamin = findViewById(R.id.spinner_penjamin);
+        spnPenjamin.setVisibility(View.GONE);
 
         spnTipePoli = findViewById(R.id.spinner_eksekutiff);
+
         etCariPasien = findViewById(R.id.et_cari_pasien);
 
 
@@ -532,6 +538,55 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void cekTglKontrolPoliEksekutif() {
+
+        dialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.CEK_TGL_KONTROL_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        dialog.dismiss();
+
+                        if(response.equalsIgnoreCase("Gagal")) {
+
+                            errorDialogDateLimit();
+
+
+                        } else{
+
+                            cvBpjs.setVisibility(GONE);
+                            cvKartu.setVisibility(GONE);
+                            cvKtp.setVisibility(GONE);
+                            fotoBpjs.setVisibility(GONE);
+                            fotoKartu.setVisibility(GONE);
+                            fotoKtp.setVisibility(GONE);
+                            btnSimpan.setVisibility(VISIBLE);
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("tgl_kontrol", etCekTglBooking.getText().toString());
+                params.put("nopeserta", etCariPasien.getText().toString());
+                // params.put("password", passwordHolder);
+                return params;
+            }
+        };
+
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
+    }
+
     private void cekBooking() {
 
         pb.setVisibility(View.VISIBLE);
@@ -610,9 +665,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initSpinner(){
 
-        MaterialSpinner spinner = findViewById(R.id.spinner);
-        spinner.setItems( "Pilih Penjamin", "Umum", "BPJS", "Asuransi Lainnya");
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+        MaterialSpinner spinnerPenjamin = findViewById(R.id.spinner_penjamin);
+        spinnerPenjamin.setItems( "Pilih Penjamin", "Umum", "BPJS", "Asuransi Lainnya");
+        spinnerPenjamin.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
             @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
 
@@ -649,31 +704,41 @@ public class MainActivity extends AppCompatActivity {
 
 
         MaterialSpinner spinner = findViewById(R.id.spinner_eksekutiff);
-        spinner.setItems( "Pilih Tipe Poli", "Umum", "Eksekutif");
+        spinner.setItems( "Pilih Tipe Poli", "Reguler", "Eksekutif");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
             @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
 
                 switch (position) {
 
+
+                    //DEFAULT
                     case 0:
                         btnSimpan.setVisibility(GONE);
                         cvBpjs.setVisibility(GONE);
                         cvKtp.setVisibility(GONE);
                         cvKartu.setVisibility(GONE);
+                        spnPenjamin.setVisibility(GONE);
                         Log.d(TAG, "onItemSelected: " + item);
 
                         break;
+
+                    //TIPE POLI REGULER
                     case 1:
                         cvBpjs.setVisibility(View.GONE);
                         cvKartu.setVisibility(View.GONE);
                         cvKtp.setVisibility(GONE);
                         btnSimpan.setVisibility(VISIBLE);
+                        spnPenjamin.setVisibility(View.VISIBLE);
+                        Log.d(TAG, "onItemSelected: iki reguler dudu ?? " + item);
+
                         break;
 
                     case 2:
 
-                        cekTglKontrol();
+                        Log.d(TAG, "onItemSelected: " + item);
+                        spnPenjamin.setVisibility(View.GONE);
+                        cekTglKontrolPoliEksekutif();
                         break;
 
                 }
@@ -1643,16 +1708,54 @@ public class MainActivity extends AppCompatActivity {
         String senin = mPreferences.getString(getString(R.string.hari), "");
 
         TextView tvSyarat = dialog.findViewById(R.id.tv_syarat);
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        Date tomorrow = calendar.getTime();
 
 
-        //GET DATE TOMORROW AND SHOW TO DIALOG TEXTVIEW
-        SimpleDateFormat df = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
-        final String tanggal = df.format(tomorrow);
-        String[] days = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
-        String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_YEAR, 1);
+//        Date tomorrow = calendar.getTime();
+//
+//
+//        //GET DATE TOMORROW AND SHOW TO DIALOG TEXTVIEW
+//        SimpleDateFormat df = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+//        final String tanggal = df.format(tomorrow);
+//        String[] days = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+//        String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
+
+
+        /*TODAY*/
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+        String[] sekarangs = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String Harihariini = sekarangs[today.get(Calendar.DAY_OF_WEEK)];
+
+        /*BESOK*/
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+        Date haribesok = tomorrow.getTime();
+
+        SimpleDateFormat sdfHariIni = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalBesok = sdfHariIni.format(haribesok);
+
+        String[] besoks = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariBesok = besoks[tomorrow.get(Calendar.DAY_OF_WEEK)];
+
+
+
+        /*LUSA*/
+        Calendar lusa = Calendar.getInstance();
+        lusa.add(Calendar.DAY_OF_YEAR, 2);
+        Date besokLusa = lusa.getTime();
+
+        SimpleDateFormat dfsenin = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        String tanggalLusa = dfsenin.format(besokLusa);
+
+        String[] lusas = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariLusa = lusas[lusa.get(Calendar.DAY_OF_WEEK)];
 
 
 
@@ -1660,21 +1763,29 @@ public class MainActivity extends AppCompatActivity {
 
         if(penjaminOffice.equals("BPJS")){
 
-            if (day == "Minggu"){
-                Calendar calendar1 = Calendar.getInstance();
-                calendar1.add(Calendar.DAY_OF_YEAR, 2);
-                Date besok = calendar1.getTime();
+            if (Harihariini == "Minggu") {
+//                Calendar calendar1 = Calendar.getInstance();
+//                calendar1.add(Calendar.DAY_OF_YEAR, 2);
+//                Date besok = calendar1.getTime();
+//
+//                SimpleDateFormat dateFormat = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+//                String tgl = dateFormat.format(besok);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
-                String tgl = dateFormat.format(besok);
+                tvSyarat.setText("Anda akan dilayani pada hari " + hariBesok + ", Tanggal:  " + tanggalBesok + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+                tvSyaratBpjs.setText("1. Kartu BPJS");
+                tvSyaratKtp.setText("2. KTP");
+                tvSyaratSurat.setText("3. Surat Kontrol");
 
-                tvSyarat.setText("Anda akan dilayani pada hari " + senin +", Tanggal:  " + tgl + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+            } else if(Harihariini == "Sabtu"){
+
+                tvSyarat.setText("Anda akan dilayani pada hari " + hariLusa + ", Tanggal:  " + tanggalLusa + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
                 tvSyaratBpjs.setText("1. Kartu BPJS");
                 tvSyaratKtp.setText("2. KTP");
                 tvSyaratSurat.setText("3. Surat Kontrol");
 
             } else {
-                tvSyarat.setText("Anda akan dilayani pada hari " + senin +", Tanggal: " + tanggal + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+
+                tvSyarat.setText("Anda akan dilayani pada hari " + Harihariini +", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
                 //ktpKk.setVisibility(VISIBLE);
                 tvSyaratBpjs.setText("1. Kartu BPJS");
                 tvSyaratKtp.setText("2. KTP");
@@ -1685,23 +1796,23 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
-            if (day == "Minggu"){
-                Calendar calendar1 = Calendar.getInstance();
-                calendar1.add(Calendar.DAY_OF_YEAR, 2);
-                Date besok = calendar1.getTime();
+            if (Harihariini == "Minggu") {
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.UK);
-                String tgl = dateFormat.format(besok);
-
-                tvSyarat.setText("Anda akan dilayani pada hari " + senin +", Tanggal: " + tgl + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+                tvSyarat.setText("Anda akan dilayani pada hari " + hariBesok + ", Tanggal: " + tanggalBesok + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
                 tvSyaratKtp.setText("1. KTP");
                 tvSyaratSurat.setText("2. Surat Kontrol");
 
+            } else if (Harihariini == "Sabtu"){
+
+                tvSyarat.setText("Anda akan dilayani pada hari " + hariLusa + ", Tanggal: " + tanggalLusa + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+                tvSyaratKtp.setText("1. KTP");
+                tvSyaratSurat.setText("2. Surat Kontrol");
+
+
             } else {
 
-                tvSyarat.setText("Anda akan dilayani pada hari " + senin + ", Tanggal: " + tanggal + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Pendaftaran.");
+                tvSyarat.setText("Anda akan dilayani pada hari " + Harihariini + ", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Pendaftaran.");
                 tvSyaratBpjs.setVisibility(GONE);
-
                 tvSyaratKtp.setText("1. KTP");
                 tvSyaratSurat.setText("2. Surat Kontrol");
             }
@@ -1747,7 +1858,6 @@ public class MainActivity extends AppCompatActivity {
 
         String jam = mPreferences.getString(getString(R.string.jam),"");
 
-
         String hari = mPreferences.getString(getString(R.string.hari),"");
         tvHariDialog.setText(hari);
 
@@ -1756,9 +1866,16 @@ public class MainActivity extends AppCompatActivity {
         String penjamin = mPreferences.getString(getString(R.string.penjamin), "");
         penjaminDialog.setText(penjamin);
 
+        if (penjamin.equals("Pilih Penjamin")){
+
+            penjaminDialog.setText("-");
+            penjaminDialog.setVisibility(GONE);
+        }
+
+
 // NEW FITUR START ///////////////////////////////////////
         String typePoli = mPreferences.getString(getString(R.string.tipe_poli), "");
-        typePoliDialog.setText(typePoli);
+        typePoliDialog.setText("Poli " + typePoli);
 // NEW FITUR END ///////////////////////////////////////
 
 
@@ -1992,6 +2109,12 @@ public class MainActivity extends AppCompatActivity {
         noRmDialog.setText(norm);
         String penjamin = mPreferences.getString(getString(R.string.penjamin), "");
         penjaminDialog.setText(penjamin);
+
+        String tipepoli = mPreferences.getString(getString(R.string.tipe_poli), "");
+
+        if(penjamin.equals("Pilih Penjamin")){
+            penjaminDialog.setText("Poli " + tipepoli);
+        }
 
         Button btnYa = dialog.findViewById(R.id.bt_accept);
         btnYa.setOnClickListener(new View.OnClickListener() {

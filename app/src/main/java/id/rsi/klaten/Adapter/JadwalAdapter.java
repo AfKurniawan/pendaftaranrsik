@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import android.widget.Toast;
 import com.android.volley.*;
@@ -77,24 +78,39 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
         String sesuk = df.format(tomorrow);
 
         holder.etBesok.setText(sesuk);
-        //holder.etHariLibur.setVisibility(View.GONE);
 
 
-        /*Date date = new Date();
-        date.setHours(date.getHours());*/
 
-        /*SimpleDateFormat simpDate;
-        simpDate = new SimpleDateFormat("HH:mm");
-        holder.etJam.setText(simpDate.format(date));*/
+        // CONFIG TIME NOW
 
 
 
 
 
 
+
+
+
+//            int jampraktek = Integer.parseInt(jd.getJam());
+//            String praktek = jd.getJam().replaceAll("\\D+","");
 
 
         Jadwal jd = mItems.get(position);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("GMT+7"));
+
+        int jamSekarang = cal.get(Calendar.HOUR_OF_DAY);
+        int minuteSekarang = cal.get(Calendar.MINUTE);
+        String jSekarang = String.valueOf(jamSekarang);
+        String sekarangregex = jSekarang.replaceAll("\\D+", "");
+
+
+
+
+            String praktekRegex = jd.getJam().replaceAll("\\D+","");
+            int jampraktek = Integer.parseInt(Integer.toString(Integer.parseInt(praktekRegex)).substring(0, 2));
+            String sJampraktek = Integer.toString(jampraktek);
 
             holder.tvIdJadwal.setText(jd.getId_jadwal());
             holder.tvNamaDokter.setText(jd.getNama_lengkap());
@@ -106,6 +122,13 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
             holder.tvJam.setText(jd.getJam());
             holder.etIdDokter.setText(jd.getId_dokter());
             holder.tvPilih.setText("Pilih");
+            //holder.tvPilih.setText(sekarangregex);
+
+
+
+
+
+
 
 
 
@@ -125,6 +148,11 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
         EditText etBesok, etIdDokter, etKodeDokter, etKodePoli, etPraktek, etJumlahDokter;
         LinearLayout btnLayout;
         Jadwal jd;
+
+
+
+
+
 
         public  HolderData (View view)
         {
@@ -151,6 +179,19 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
 
             btnLayout = view.findViewById(R.id.bt_pilih);
 
+
+
+           //final int jamJadwal = Integer.parseInt(jampraktek);
+
+//            if (jamJadwal < jamSekarang) {
+//
+//              //  btnLayout.setVisibility(View.GONE);
+//
+//            } else {
+//
+//              //  btnLayout.setVisibility(View.VISIBLE);
+//            }
+
             btnLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -165,7 +206,7 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
                     update.putExtra("nama_poli",jd.getNama_poli());
                     update.putExtra("hari",jd.getHari());
                     update.putExtra("praktek", jd.getPraktek());
-                    update.putExtra("jam",jd.getJam());
+                    update.putExtra("jam", jd.getJam());
                     update.putExtra("id_dokter", jd.getId_dokter());
 
                     context.startActivity(update);

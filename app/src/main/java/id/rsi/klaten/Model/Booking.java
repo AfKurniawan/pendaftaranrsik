@@ -2,17 +2,18 @@ package id.rsi.klaten.Model;
 
 public class Booking {
 
-    String id_booking, nama_pasien, no_rm, no_antrian, no_barcode, penjamin, nama_poli, nama_lengkap, tgl_booking, hari, jam;
+    String id_booking, nama_pasien, no_rm, no_antrian, no_barcode, penjamin, jns_daftar, nama_poli, nama_lengkap, tgl_booking, hari, jam;
     public Booking(){}
 
 
-    public Booking(String id_booking, String nama_pasien, String no_rm, String no_antrian, String no_barcode, String penjamin, String nama_poli, String nama_lengkap, String tgl_booking, String hari, String jam) {
+    public Booking(String id_booking, String nama_pasien, String no_rm, String no_antrian, String no_barcode, String penjamin, String jns_daftar, String nama_poli, String nama_lengkap, String tgl_booking, String hari, String jam) {
         this.id_booking = id_booking;
         this.nama_pasien = nama_pasien;
         this.no_rm = no_rm;
         this.no_antrian = no_antrian;
         this.no_barcode = no_barcode;
         this.penjamin = penjamin;
+        this.jns_daftar = jns_daftar;
         this.nama_poli = nama_poli;
         this.nama_lengkap = nama_lengkap;
         this.tgl_booking = tgl_booking;
@@ -45,6 +46,8 @@ public class Booking {
     public String getPenjamin(){
         return penjamin;
     }
+
+    public String getJns_daftar(){ return  jns_daftar;}
 
     public String getNama_poli() {
         return nama_poli;

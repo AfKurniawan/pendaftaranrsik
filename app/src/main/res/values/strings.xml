@@ -1,15 +1,19 @@
 <resources>
 
-    <string name="version">1.7.2</string>
+    <string name="version">1.7.3</string>
 
 
     <string name="app_name">RSI Klaten</string>
     <string name="login">LOGIN</string>
+    <string name="btn_change_password">OKE GANTI</string>
     <string name="daftar">DAFTAR</string>
     <string name="password">PASSWORD</string>
     <string name="jadwal_hari_ini">Jadwal Poli Hari Ini</string>
     <string name="jadwal_poli_besok">Jadwal Poli Besok</string>
     <string name="tipe_poli">Tipe Poli</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="ganti_password_email">Email Yang Sudah Terdaftar</string>
+    <string name="password_baru">Password Baru</string>
 
     <string name="gdpr_privacy_policy">Apakah Anda akan melanjutkan pemeriksaan dengan data sebagai berikut :</string>
     <string name="ketentuan">Persyaratan yang harus dilengkapi</string>
