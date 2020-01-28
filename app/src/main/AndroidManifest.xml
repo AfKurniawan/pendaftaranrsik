@@ -18,9 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="id.rsi.klaten.Activity.GantiPasswordActivity"
-            android:parentActivityName="id.rsi.klaten.Activity.MainActivity">
-        </activity>
+        <activity android:name="id.rsi.klaten.Activity.JadwalEksekutifActivity"></activity>
+        <activity
+            android:name="id.rsi.klaten.Activity.GantiPasswordActivity"
+            android:parentActivityName="id.rsi.klaten.Activity.MainActivity"></activity>
         <activity android:name="id.rsi.klaten.Activity.JadwalPoliHariIni" />
         <activity
             android:name="id.rsi.klaten.Activity.LoginActivity"

@@ -108,9 +108,9 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
 
 
 
-            String praktekRegex = jd.getJam().replaceAll("\\D+","");
-            int jampraktek = Integer.parseInt(Integer.toString(Integer.parseInt(praktekRegex)).substring(0, 2));
-            String sJampraktek = Integer.toString(jampraktek);
+//            String praktekRegex = jd.getJam().replaceAll("\\D+","");
+//            int jampraktek = Integer.parseInt(Integer.toString(Integer.parseInt(praktekRegex)).substring(0, 2));
+//            String sJampraktek = Integer.toString(jampraktek);
 
             holder.tvIdJadwal.setText(jd.getId_jadwal());
             holder.tvNamaDokter.setText(jd.getNama_lengkap());

@@ -310,28 +310,6 @@ public class JadwalListActivity extends AppCompatActivity implements SearchView.
 
     public void initJadwalByDay() {
 
-       /* Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        Date tomorrow = calendar.getTime();
-
-        SimpleDateFormat df = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
-        String tanggal = df.format(tomorrow);
-        String[] days = new String[]{"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"};
-        String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
-
-        if (day == "Minggu") {
-
-            etFilterHari.setText("Senin");
-
-        }else if (day == "Sabtu") {
-
-            etFilterHari.setText("Senin");
-
-        } else {
-
-            etFilterHari.setText(day);
-        }
-*/
 
         /*TODAY*/
         Calendar today = Calendar.getInstance();
@@ -587,76 +565,76 @@ public class JadwalListActivity extends AppCompatActivity implements SearchView.
 
 
 
-    public void showNoDataDialog(){
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
-        dialog.setContentView(R.layout.dialog_warning);
-        dialog.setCancelable(true);
+//    public void showNoDataDialog(){
+//        final Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+//        dialog.setContentView(R.layout.dialog_warning);
+//        dialog.setCancelable(true);
+//
+//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//        lp.copyFrom(dialog.getWindow().getAttributes());
+//        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+//
+//
+//        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), ((AppCompatButton) v).getText().toString() + " Clicked", Toast.LENGTH_SHORT).show();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//        dialog.getWindow().setAttributes(lp);
+//    }
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
 
-        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), ((AppCompatButton) v).getText().toString() + " Clicked", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-        dialog.getWindow().setAttributes(lp);
-    }
-
-
-
-    public void getAllJadwal() {
-
-        progressBar.setVisibility(View.VISIBLE);
-
-        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET, Const.URL_ALL_JADWAL, null,
-
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        progressBar.setVisibility(View.GONE);
-
-                        Log.d("volley", "response : " + response.toString());
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject data = response.getJSONObject(i);
-                                Jadwal jadwal = new Jadwal();
-
-                                jadwal.setId_jadwal(data.getString("id_jadwal"));
-                                jadwal.setNama_lengkap(data.getString("nama_lengkap"));
-                                jadwal.setNama_poli(data.getString("nama_poli"));
-                                jadwal.setHari(data.getString("hari"));
-                                jadwal.setJam(data.getString("jam"));
-
-                                mItems.add(jadwal);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        mAdapter.notifyDataSetChanged();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        Log.d("volley", "error : " + error.getMessage());
-                    }
-                });
-
-        VolleySingleton.getInstance(this).addToRequestQueue(reqData);
-
-    }
+//    public void getAllJadwal() {
+//
+//        progressBar.setVisibility(View.VISIBLE);
+//
+//        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET, Const.URL_ALL_JADWAL, null,
+//
+//                new Response.Listener<JSONArray>() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//
+//                        progressBar.setVisibility(View.GONE);
+//
+//                        Log.d("volley", "response : " + response.toString());
+//                        for (int i = 0; i < response.length(); i++) {
+//                            try {
+//                                JSONObject data = response.getJSONObject(i);
+//                                Jadwal jadwal = new Jadwal();
+//
+//                                jadwal.setId_jadwal(data.getString("id_jadwal"));
+//                                jadwal.setNama_lengkap(data.getString("nama_lengkap"));
+//                                jadwal.setNama_poli(data.getString("nama_poli"));
+//                                jadwal.setHari(data.getString("hari"));
+//                                jadwal.setJam(data.getString("jam"));
+//
+//                                mItems.add(jadwal);
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        mAdapter.notifyDataSetChanged();
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                        Log.d("volley", "error : " + error.getMessage());
+//                    }
+//                });
+//
+//        VolleySingleton.getInstance(this).addToRequestQueue(reqData);
+//
+//    }
 
     @Override
     public boolean onQueryTextSubmit(String query) {

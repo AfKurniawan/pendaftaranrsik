@@ -34,6 +34,8 @@ public class Const {
 
     public static final String  URL_GET_JADWAL_BY_DAY = ROOT_URL + "search/getJadwalByDay.php";
 
+    public static final String  URL_GET_JADWAL_EKSEKUTIF = ROOT_URL + "search/getJadwalEksekutifByDay.php";
+
     public static final String  LIMIT_DOKTER_URL = ROOT_URL + "search/limit_dokter_new.php";
 
     public static final String  URL_CEK_VERSION = ROOT_URL + "search/cek_version.php";

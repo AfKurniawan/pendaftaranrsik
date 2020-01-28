@@ -187,7 +187,7 @@ public class HistoryListActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }else if (id == R.id.menu_hari_ini){
-                    Intent intent = new Intent(HistoryListActivity.this, JadwalPoliHariIni.class);
+                    Intent intent = new Intent(HistoryListActivity.this, JadwalEksekutifActivity.class);
                     startActivity(intent);
 
 

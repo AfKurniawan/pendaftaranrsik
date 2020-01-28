@@ -1117,6 +1117,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MainActivity.this, HistoryListActivity.class);
                         startActivity(intent);
+                        finish();
 
                         btnSimpan.setVisibility(GONE);
                     }
@@ -2179,7 +2180,7 @@ public class MainActivity extends AppCompatActivity {
                 getDataPasien();*/
                         Intent intent = new Intent(MainActivity.this, JadwalListActivity.class);
                         startActivity(intent);
-                        finish();
+                        MainActivity.this.finish();
 
                         //showDateDialog();
                         //btnSimpan.setVisibility(GONE);
