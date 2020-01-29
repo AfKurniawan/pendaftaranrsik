@@ -1,6 +1,7 @@
 package id.rsi.klaten.Activity;
 
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Context;
 
 import java.text.SimpleDateFormat;
@@ -34,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 import id.rsi.klaten.Adapter.JadwalAdapter;
 import id.rsi.klaten.Model.Jadwal;
@@ -115,10 +118,38 @@ public class JadwalListActivity extends AppCompatActivity implements SearchView.
 
         cekVersion();
 
+        getIntent().setAction("Already created");
+
 
 
 
     }
+
+
+    @Override
+    protected void onResume(){
+
+        Log.v("Example", "onResume");
+
+        String action = getIntent().getAction();
+        // Prevent endless loop by adding a unique action, don't restart if action is present
+        if(action == null || !action.equals("Already created")) {
+            Log.v("Example", "Force restart");
+            Intent intent = new Intent(this, JadwalListActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        // Remove the unique action so the next time onResume is called it will restart
+        else
+            getIntent().setAction(null);
+
+        super.onResume();
+
+        //recreate();
+
+
+    }
+
 
 
     private void initToolbar() {
@@ -489,6 +520,7 @@ public class JadwalListActivity extends AppCompatActivity implements SearchView.
                             }
 
                             mRecyclerView.setAdapter(mAdapter);
+
                             mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
                            /* }else {
