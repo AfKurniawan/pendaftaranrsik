@@ -68,7 +68,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/app_name"
+                android:hint="@string/login_email"
                 android:id="@+id/et_email"/>
 
             <EditText
@@ -135,7 +135,7 @@
         app:headerLayout="@layout/include_drawer_header_news"
         app:itemIconTint="@color/grey_40"
         app:itemTextColor="@color/grey_90"
-        app:menu="@menu/menu_navigation_drawer_history" />
+        app:menu="@menu/menu_navigation_drawer_poli_list" />
 
 </android.support.v4.widget.DrawerLayout>
 

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -73,6 +74,8 @@ public class HistoryListActivity extends AppCompatActivity {
     private Toolbar toolbar;
     TextView tvDataKosong;
     LinearLayout ll;
+   /* private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;*/
 
 
 
@@ -86,8 +89,12 @@ public class HistoryListActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
         etEmail = findViewById(R.id.et_email);
+
+
         etEmail.setText(sessionManager.getSavedUserName());
         etEmail.setVisibility(GONE);
+
+
 
 
 
@@ -162,8 +169,6 @@ public class HistoryListActivity extends AppCompatActivity {
 
     private void initNavigationMenu() {
 
-
-
         NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -171,32 +176,46 @@ public class HistoryListActivity extends AppCompatActivity {
                 super.onDrawerOpened(drawerView);
             }
         };
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
+        nav_view.setItemIconTintList(null);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(final MenuItem item) {
 
                 int id = item.getItemId();
 
-                if (id == R.id.nav_pendaftaran){
-                    Intent intent = new Intent(HistoryListActivity.this, JadwalListActivity.class);
-                    startActivity(intent);
-                } else if (id == R.id.nav_all_jadwal_history) {
-                    Intent intent = new Intent(HistoryListActivity.this, AllJadwalActivity.class);
+                if (id == R.id.nav_history) {
+                    Intent intent = new Intent(HistoryListActivity.this, HistoryListActivity.class);
                     startActivity(intent);
 
                 }else if (id == R.id.menu_hari_ini){
-                    Intent intent = new Intent(HistoryListActivity.this, JadwalEksekutifActivity.class);
+                    Intent intent = new Intent(HistoryListActivity.this, PilihHariPoliReguler.class);
+                    startActivity(intent);
+
+                } else if(id == R.id.nav_exec) {
+
+                    Intent intent = new Intent(HistoryListActivity.this, PilihHariPoliEksekutif.class);
                     startActivity(intent);
 
 
-                } else if (id == R.id.nav_ganti_password){
+                } else if (id == R.id.nav_all_jadwal_poli) {
+                    Intent intent = new Intent(HistoryListActivity.this, AllJadwalActivity.class);
+                    startActivity(intent);
+
+                } else if(id == R.id.nav_ganti_password) {
+
                     Intent intent = new Intent(HistoryListActivity.this, GantiPasswordActivity.class);
+                    startActivity(intent);
+
+                } else if (id == R.id.nav_home){
+
+                    Intent intent = new Intent(HistoryListActivity.this, DashboardActivity.class);
                     startActivity(intent);
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();
+
                 }
 
                 drawer.closeDrawers();

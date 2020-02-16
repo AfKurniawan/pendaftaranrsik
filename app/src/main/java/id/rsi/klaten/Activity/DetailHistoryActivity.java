@@ -31,7 +31,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
 
     EditText etNomorAntrian, etNamaPasien, etNamaPoli, etNamaDokter, etTglKontrol;
     ImageView ivBarcode;
-    TextView tvSyarat, tvNamaPasien, tvNoRm, tvHari, tvSyaratBpjs, tvPenjamin, tvJnsDaftar, tvNoBarcode, tvSyaratSurat, tvSyaratKtp;
+    TextView tvSyarat, tvLabelNoantrian, tvNamaPasien, tvNoRm, tvHari, tvSyaratBpjs, tvPenjamin, tvJnsDaftar, tvNoBarcode, tvSyaratSurat, tvSyaratKtp;
     RequestQueue queue;
     ProgressBar pb;
     private SharedPreferences mPreferences;
@@ -90,6 +90,7 @@ public class DetailHistoryActivity extends AppCompatActivity {
         tvSyaratBpjs = findViewById(R.id.tv_syarat_bpjs);
         tvSyaratSurat = findViewById(R.id.tv_syarat_surat);
         tvSyaratKtp = findViewById(R.id.tv_syarat_ktp);
+        tvLabelNoantrian = findViewById(R.id.title2);
 
 
 
@@ -136,7 +137,24 @@ public class DetailHistoryActivity extends AppCompatActivity {
         String intentJam = data.getStringExtra("jam");
 
 
-        etNomorAntrian.setText(intentAntrian);
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+
+        if (intentTglBooking.equals(tanggalHariIni)){
+
+            etNomorAntrian.setText("");
+            tvLabelNoantrian.setVisibility(View.GONE);
+        } else {
+
+            etNomorAntrian.setText(intentAntrian);
+        }
+
+
         tvNamaPasien.setText(intentNamaPasien);
         tvPenjamin.setText(intentPenjamin);
         tvNoRm.setText(intentNoRm);

@@ -117,7 +117,24 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.HolderData
             holder.etKodeDokter.setText(jd.getKd_dokter());
             holder.etKodePoli.setText(jd.getKd_poli());
             holder.tvNamaPoli.setText(jd.getNama_poli());
-            holder.tvHari.setText(jd.getHari());
+
+            if(jd.getHari().equals("Sen")){
+                holder.tvHari.setText("Senin");
+            } else if(jd.getHari().equals("Sel")){
+                holder.tvHari.setText("Selasa");
+            } else if(jd.getHari().equals("Rab")){
+                holder.tvHari.setText("Rabu");
+            } else if(jd.getHari().equals("Kam")){
+                holder.tvHari.setText("Kamis");
+            } else if(jd.getHari().equals("Jum")){
+                holder.tvHari.setText("Jum'at");
+            } else if(jd.getHari().equals("Sab")){
+                holder.tvHari.setText("Sabtu");
+            } else {
+                holder.tvHari.setText(jd.getHari());
+            }
+
+
             holder.etPraktek.setText(jd.getPraktek());
             holder.tvJam.setText(jd.getJam());
             holder.etIdDokter.setText(jd.getId_dokter());

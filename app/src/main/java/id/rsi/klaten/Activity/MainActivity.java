@@ -40,7 +40,6 @@ import com.android.volley.toolbox.Volley;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import id.rsi.klaten.Model.Jadwal;
-import id.rsi.klaten.Model.NomorAntri;
 import id.rsi.klaten.Model.Pasien;
 import id.rsi.klaten.Model.LimitDokter;
 import id.rsi.klaten.Utils.Const;
@@ -85,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
             etKodeDokter,
             etKodePoli,
             etPraktek,
+            etHiddenPraktek,
             etNamaPoli,
             etCekTglBooking,
             etTanggalKontrolBPJS,
             etJam,
             etHari,
+            etHariHidden,
             etJumlahDokter,
             etIdDokterIntentExtra,
             etEmail;
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue queue;
 
+    String eksekutif;
+
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
 
     public static final int MY_PERMISSION_READ_STORAGE = 105;
@@ -159,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         tvLampiranKartu = findViewById(R.id.tv_lampiran_kartu);
         tvLampiranKtp = findViewById(R.id.tv_lampiran_ktp);
         lblSpnPenjamin = findViewById(R.id.label_spn_penjamin);
-        lblSpnPenjamin.setVisibility(View.GONE);
         cvBpjs = findViewById(R.id.cv_lampiran_bpjs);
         cvBpjs.setVisibility(GONE);
         cvKartu = findViewById(R.id.cv_lampiran_kartu);
@@ -328,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        Intent intent = new Intent(MainActivity.this, JadwalListActivity.class);
+                        Intent intent = new Intent(MainActivity.this, JadwalPoliRegulerBesok.class);
                         startActivity(intent);
                         finish();
                     }
@@ -358,9 +360,10 @@ public class MainActivity extends AppCompatActivity {
         etJenkel = findViewById(R.id.et_jenkel);
         etAlamat = findViewById(R.id.et_alamat);
         spnPenjamin = findViewById(R.id.spinner_penjamin);
-        spnPenjamin.setVisibility(View.GONE);
+        //spnPenjamin.setVisibility(View.GONE);
 
         spnTipePoli = findViewById(R.id.spinner_eksekutiff);
+       // spnTipePoli.setVisibility(View.GONE);
 
         etCariPasien = findViewById(R.id.et_cari_pasien);
 
@@ -379,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
         etKodePoli.setVisibility(GONE);
         etPraktek = findViewById(R.id.et_praktek);
         etPraktek.setVisibility(GONE);
+        etHiddenPraktek = findViewById(R.id.et_hidden_praktek);
         etNamaPoli = findViewById(R.id.et_nama_poli);
         etIdDokter = findViewById(R.id.et_id_dokter);
         etIdDokter.setVisibility(GONE);
@@ -390,6 +394,7 @@ public class MainActivity extends AppCompatActivity {
         etNamaPoli.setVisibility(GONE);
 
         etHari = findViewById(R.id.et_hari);
+        etHariHidden = findViewById(R.id.et_hari_hide);
         etJam = findViewById(R.id.et_jam);
 
         etNoBarcode = findViewById(R.id.et_no_barcode);
@@ -425,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Pendaftaran Online Pasien");
+        getSupportActionBar().setTitle("Pendaftaran Pasien");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.green_A400);
     }
@@ -433,37 +438,7 @@ public class MainActivity extends AppCompatActivity {
     public void showToday(){
 
 
-        etDateBooking = findViewById(R.id.tgl_booking);
-        etDateBooking.setVisibility(GONE);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        Date tomorrow = calendar.getTime();
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
-        String tanggal = df.format(tomorrow);
-
-
-        String[] days = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
-        String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
-
-
-        if (day == "Minggu"){
-
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DAY_OF_WEEK, 2);
-            Date senin = cal.getTime();
-
-            SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
-            String harisenin = dformat.format(senin);
-
-            etDateBooking.setText(harisenin);
-
-        } else {
-
-            etDateBooking.setText(tanggal);
-
-        }
 
 
     }
@@ -639,6 +614,63 @@ public class MainActivity extends AppCompatActivity {
         etIdDokterIntentExtra.setVisibility(GONE);
 
 
+        etDateBooking = findViewById(R.id.tgl_booking);
+        etDateBooking.setVisibility(GONE);
+        etHariHidden.setVisibility(View.GONE);
+
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_YEAR, 1);
+//        Date tomorrow = calendar.getTime();
+//
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+//        String tanggal = df.format(tomorrow);
+//
+//
+//        String[] days = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+//        String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
+
+        /*TODAY*/
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+        String[] sekarangs = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String Harihariini = sekarangs[today.get(Calendar.DAY_OF_WEEK)];
+
+        /*BESOK*/
+        Calendar tomorrow = Calendar.getInstance();
+        tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+        Date haribesok = tomorrow.getTime();
+
+        SimpleDateFormat sdfHariIni = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String tanggalBesok = sdfHariIni.format(haribesok);
+
+        String[] besoks = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariBesok = besoks[tomorrow.get(Calendar.DAY_OF_WEEK)];
+
+
+
+        /*LUSA*/
+        Calendar lusa = Calendar.getInstance();
+        lusa.add(Calendar.DAY_OF_YEAR, 2);
+        Date besokLusa = lusa.getTime();
+
+        SimpleDateFormat dfsenin = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String tanggalLusa = dfsenin.format(besokLusa);
+
+        String[] lusas = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        String hariLusa = lusas[lusa.get(Calendar.DAY_OF_WEEK)];
+
+
+
+
+
+
+
+
         Intent data = getIntent();
         final int update = data.getIntExtra("update", 0);
 
@@ -646,14 +678,53 @@ public class MainActivity extends AppCompatActivity {
         String intent_jam = data.getStringExtra("jam");
         String intent_hari = data.getStringExtra("hari");
         String intentIdDokter = data.getStringExtra("id_dokter");
+        String intentPraktek = data.getStringExtra("praktek");
+        eksekutif = data.getStringExtra("praktek");
 
         if (update==1){
 
+
+            if (intentPraktek.equals("3")){
+
+                etHiddenPraktek.setText("Eksekutif");
+                spnPenjamin.setVisibility(GONE);
+                spnTipePoli.setVisibility(VISIBLE);
+
+            } else if (intentPraktek.equals("4")) {
+
+                etHiddenPraktek.setText("Eksekutif");
+                spnPenjamin.setVisibility(View.GONE);
+                spnTipePoli.setVisibility(View.VISIBLE);
+
+
+            } else {
+
+                etHiddenPraktek.setText("Reguler");
+            }
+           // etHiddenPraktek.setVisibility(View.GONE);
             etIdJadwal.setText(intent_idJadwal);
-            etHari.setText(intent_hari +", "+ intent_jam);
+            etHari.setText(intent_hari+", "+intent_jam);
+            etHariHidden.setText(intent_hari);
             etJam.setText(intent_jam);
             etJam.setVisibility(GONE);
             etIdDokterIntentExtra.setText(intentIdDokter);
+
+            if (Harihariini.equals("Minggu")){
+
+                etDateBooking.setText(tanggalBesok);
+
+            } else if(Harihariini.equals("Sabtu")) {
+
+                etDateBooking.setText(tanggalLusa);
+
+            } else if(Harihariini.equals(intent_hari)) {
+
+                etDateBooking.setText(tanggalHariIni);
+
+            } else {
+
+                etDateBooking.setText(tanggalBesok);
+            }
 
         }
 
@@ -703,9 +774,9 @@ public class MainActivity extends AppCompatActivity {
     private void initSpinnerEksekutif(){
 
 
-        MaterialSpinner spinner = findViewById(R.id.spinner_eksekutiff);
-        spinner.setItems( "Pilih Tipe Poli", "Reguler", "Eksekutif");
-        spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+        spnTipePoli.setVisibility(GONE);
+        spnTipePoli.setItems( "Pilih Tipe Poli", "Reguler", "Eksekutif");
+        spnTipePoli.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
             @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
 
@@ -719,6 +790,7 @@ public class MainActivity extends AppCompatActivity {
                         cvKtp.setVisibility(GONE);
                         cvKartu.setVisibility(GONE);
                         spnPenjamin.setVisibility(GONE);
+                        lblSpnPenjamin.setVisibility(GONE);
                         Log.d(TAG, "onItemSelected: " + item);
 
                         break;
@@ -738,6 +810,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d(TAG, "onItemSelected: " + item);
                         spnPenjamin.setVisibility(View.GONE);
+                        lblSpnPenjamin.setVisibility(GONE);
                         cekTglKontrolPoliEksekutif();
                         break;
 
@@ -1045,8 +1118,15 @@ public class MainActivity extends AppCompatActivity {
                 mEditor.commit();
 
                 // NEW FITUR START //////////////////////////////////////////////
-                String tipePoli = spnTipePoli.getText().toString();
+                String tipePoli = etPraktek.getText().toString();
                 mEditor.putString(getString(R.string.tipe_poli), tipePoli);
+                mEditor.commit();
+                // NEW FITUR END /////////////////////////////////////////////
+
+
+                // NEW FITUR START //////////////////////////////////////////////
+                String jnsDaftart = etHiddenPraktek.getText().toString();
+                mEditor.putString(getString(R.string.jenis_daftar), jnsDaftart);
                 mEditor.commit();
                 // NEW FITUR END /////////////////////////////////////////////
 
@@ -1083,7 +1163,7 @@ public class MainActivity extends AppCompatActivity {
                 mEditor.putString(getString(R.string.jam), jam);
                 mEditor.commit();
 
-                String hari = etHari.getText().toString();
+                String hari = etHariHidden.getText().toString();
                 mEditor.putString(getString(R.string.hari), hari);
                 mEditor.commit();
 
@@ -1592,7 +1672,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // NEW FITUR START ////////////////////////////////////////////////
 
-                params.put("jns_daftar", spnTipePoli.getText().toString());
+                params.put("jns_daftar", etHiddenPraktek.getText().toString());
 
                 // NEW FITUR END /////////////////////////
 
@@ -1666,6 +1746,8 @@ public class MainActivity extends AppCompatActivity {
 
         // NEW FITUR START ///////////////////////////////////////
         final EditText typePoliDialog = dialog.findViewById(R.id.et_tipe_poli_dialog);
+        final EditText jenisDaftar = dialog.findViewById(R.id.et_jns_daftar_dalog);
+
         // NEW FITUR END ///////////////////////////////////////
 
         final ProgressBar pb = dialog.findViewById(R.id.pb_dialog);
@@ -1676,6 +1758,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText kdDokterDialog = dialog.findViewById(R.id.et_kd_dokter_dialog);
         final EditText kdPoliDialog = dialog.findViewById(R.id.et_kd_poli_dialog);
         final EditText praktekDialog = dialog.findViewById(R.id.et_praktek_dialog);
+
+        final EditText hiddenPraktekDialog = dialog.findViewById(R.id.et_praktek_dialog);
         kdDokterDialog.setVisibility(GONE);
         kdPoliDialog.setVisibility(GONE);
         praktekDialog.setVisibility(GONE);
@@ -1728,7 +1812,7 @@ public class MainActivity extends AppCompatActivity {
         today.add(Calendar.DAY_OF_YEAR, 0);
         Date hariini = today.getTime();
 
-        SimpleDateFormat sdfToday = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        SimpleDateFormat sdfToday = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
         String tanggalHariIni = sdfToday.format(hariini);
 
         String[] sekarangs = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
@@ -1739,7 +1823,7 @@ public class MainActivity extends AppCompatActivity {
         tomorrow.add(Calendar.DAY_OF_YEAR, 1);
         Date haribesok = tomorrow.getTime();
 
-        SimpleDateFormat sdfHariIni = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        SimpleDateFormat sdfHariIni = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
         String tanggalBesok = sdfHariIni.format(haribesok);
 
         String[] besoks = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
@@ -1752,7 +1836,7 @@ public class MainActivity extends AppCompatActivity {
         lusa.add(Calendar.DAY_OF_YEAR, 2);
         Date besokLusa = lusa.getTime();
 
-        SimpleDateFormat dfsenin = new SimpleDateFormat(" dd MMMM yyyy", Locale.UK);
+        SimpleDateFormat dfsenin = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
         String tanggalLusa = dfsenin.format(besokLusa);
 
         String[] lusas = new String[] {"", "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
@@ -1760,6 +1844,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        final String stanggal = mPreferences.getString(getString(R.string.tanggal), "");
+        etTanggalDialog.setText(stanggal);
+
+        String hari = mPreferences.getString(getString(R.string.hari),"");
+        tvHariDialog.setText(hari);
 
 
         if(penjaminOffice.equals("BPJS")){
@@ -1784,14 +1873,21 @@ public class MainActivity extends AppCompatActivity {
                 tvSyaratKtp.setText("2. KTP");
                 tvSyaratSurat.setText("3. Surat Kontrol");
 
-            } else {
+            } else if(Harihariini.equals(hari)) {
 
-                tvSyarat.setText("Anda akan dilayani pada hari " + Harihariini +", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+                tvSyarat.setText("Anda akan dilayani pada hari " + hari +", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
                 //ktpKk.setVisibility(VISIBLE);
                 tvSyaratBpjs.setText("1. Kartu BPJS");
                 tvSyaratKtp.setText("2. KTP");
                 tvSyaratSurat.setText("3. Surat Kontrol");
 
+            } else {
+
+                tvSyarat.setText("Anda akan dilayani pada hari " + hari +", Tanggal: " + stanggal + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Front Office.");
+                //ktpKk.setVisibility(VISIBLE);
+                tvSyaratBpjs.setText("1. Kartu BPJS");
+                tvSyaratKtp.setText("2. KTP");
+                tvSyaratSurat.setText("3. Surat Kontrol");
             }
 
 
@@ -1810,9 +1906,16 @@ public class MainActivity extends AppCompatActivity {
                 tvSyaratSurat.setText("2. Surat Kontrol");
 
 
+            } else if(hari.equals(Harihariini)) {
+
+                tvSyarat.setText("Anda akan dilayani pada hari " + hari + ", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Pendaftaran.");
+                tvSyaratBpjs.setVisibility(GONE);
+                tvSyaratKtp.setText("1. KTP");
+                tvSyaratSurat.setText("2. Surat Kontrol");
+
             } else {
 
-                tvSyarat.setText("Anda akan dilayani pada hari " + Harihariini + ", Tanggal: " + tanggalHariIni + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Pendaftaran.");
+                tvSyarat.setText("Anda akan dilayani pada hari " + hari + ", Tanggal: "  + stanggal + ", Tunjukkan Barcode dan Nomor Antrian ini kepada Petugas Pendaftaran.");
                 tvSyaratBpjs.setVisibility(GONE);
                 tvSyaratKtp.setText("1. KTP");
                 tvSyaratSurat.setText("2. Surat Kontrol");
@@ -1842,8 +1945,8 @@ public class MainActivity extends AppCompatActivity {
         final String iddokter = mPreferences.getString(getString(R.string.id_dokter), "");
         idDokterDialog.setText(iddokter);
 
-        final String stanggal = mPreferences.getString(getString(R.string.tanggal), "");
-        etTanggalDialog.setText(stanggal);
+//        final String stanggal = mPreferences.getString(getString(R.string.tanggal), "");
+//        etTanggalDialog.setText(stanggal);
 
         final String kddokter = mPreferences.getString(getString(R.string.kd_dokter), "");
         kdDokterDialog.setText(kddokter);
@@ -1859,24 +1962,33 @@ public class MainActivity extends AppCompatActivity {
 
         String jam = mPreferences.getString(getString(R.string.jam),"");
 
-        String hari = mPreferences.getString(getString(R.string.hari),"");
-        tvHariDialog.setText(hari);
+       /* String hari = mPreferences.getString(getString(R.string.hari),"");
+        tvHariDialog.setText(hari);*/
 
 
 
         String penjamin = mPreferences.getString(getString(R.string.penjamin), "");
         penjaminDialog.setText(penjamin);
 
-        if (penjamin.equals("Pilih Penjamin")){
+       /* if (penjamin.equals("Pilih Penjamin")){
 
             penjaminDialog.setText("-");
-            penjaminDialog.setVisibility(GONE);
-        }
+        } else if(spraktek.equals("3")){
+            praktekDialog.setText("Eksekutif");
+        } else if (spraktek.equals("4")){
+            praktekDialog.setText("Eksekutif");
+        }*/
 
 
 // NEW FITUR START ///////////////////////////////////////
         String typePoli = mPreferences.getString(getString(R.string.tipe_poli), "");
         typePoliDialog.setText("Poli " + typePoli);
+        typePoliDialog.setVisibility(View.GONE);
+
+        String jnsDaftar = mPreferences.getString(getString(R.string.jenis_daftar), "");
+        jenisDaftar.setText("Poli " + jnsDaftar);
+
+
 // NEW FITUR END ///////////////////////////////////////
 
 
@@ -1907,20 +2019,6 @@ public class MainActivity extends AppCompatActivity {
                             //getting the whole json object from the response
                             JSONObject obj = new JSONObject(response);
 
-                            //JSONArray heroArray = obj.getJSONArray("data");
-
-                            //now looping through all the elements of the json array
-                            //for (int i = 0; i < heroArray.length(); i++) {
-                            //getting the json object of the particular index inside the array
-                            //JSONObject hObject = heroArray.getJSONObject(i);
-
-                            //creating a hero object and giving them the values from json object
-                            //NomorAntri antri = new NomorAntri(
-
-                            //hObject.getString("antrian")
-
-                            //);
-
 
                             String getantrian = obj.getString("antrian");
 
@@ -1930,22 +2028,12 @@ public class MainActivity extends AppCompatActivity {
                             EditText nomorantrianthokDialog = dialog.findViewById(R.id.et_nomor_antrian_thok);
 
 
-
-                                /*String jam = mPreferences.getString(getString(R.string.jam), "");
-                                StringTokenizer tokens = new StringTokenizer(jam, "-");
-                                String jammulai = tokens.nextToken();
-                                double ijammulai = Double.parseDouble(jammulai);
-                                etJamAntrian.setText(Double.toString(ijammulai));
-                                etJamAntrian.setVisibility(GONE);*/
-
-
-
-
-                            // if (ijammulai >= 13) {
-
                             nomorantrianthokDialog.setText(getantrian);
 
-                            //nomorAntrianIdJadwalIdDokterNorm.setText(getantrian + "-" + idJadwal + "-" + iddokter + "-" + norm);
+
+
+
+
                             nomorAntrianIdJadwalIdDokterNorm.setText(getantrian + "-" + idJadwal + "-" + kddokter + "-" + kdpoli + "-" + norm);
 
                             ImageView qrcode = dialog.findViewById(R.id.qr_code2);
@@ -1961,35 +2049,6 @@ public class MainActivity extends AppCompatActivity {
                             mEditor.putString(getString(R.string.nomor_antrian_idjadwal_iddokter), antrianIdjadwalIddokter);
                             mEditor.commit();
 
-
-                                   /* String paramAntrian = mPreferences.getString(getString(R.string.nomor_antrian), "");
-                                    etParamAntrian.setText(paramAntrian);
-
-                                    String paramNobarcode = mPreferences.getString(getString(R.string.nomor_antrian_idjadwal_iddokter), "");
-                                    etParamNobarcode.setText(paramNobarcode);*/
-
-
-                               /* } else {
-
-                                    nomorantrianthokDialog.setText("1B"+antri.getAntri());
-                                    nomorAntrianIdJadwalIdDokterNorm.setText("1B" + antri.getAntri() + "-" + idJadwal + "-" + iddokter + "-" + norm);
-
-                                    ImageView qrcode = dialog.findViewById(R.id.qr_code2);
-                                    String stNomor = nomorAntrianIdJadwalIdDokterNorm.getText().toString();
-                                    Bitmap myBitmap = QRCode.from(stNomor).bitmap();
-                                    qrcode.setImageBitmap(myBitmap);
-
-                                    String antrian = nomorantrianthokDialog.getText().toString();
-                                    mEditor.putString(getString(R.string.nomor_antrian), antrian);
-                                    mEditor.commit();
-
-                                    String antrianIdjadwalIddokter = nomorAntrianIdJadwalIdDokterNorm.getText().toString();
-                                    mEditor.putString(getString(R.string.nomor_antrian_idjadwal_iddokter), antrianIdjadwalIddokter);
-                                    mEditor.commit();
-
-                                }*/
-
-                            // }
 
 
 
@@ -2178,7 +2237,7 @@ public class MainActivity extends AppCompatActivity {
                 /*cvBpjs.setVisibility(GONE);
                 cvKartu.setVisibility(GONE);
                 getDataPasien();*/
-                        Intent intent = new Intent(MainActivity.this, JadwalListActivity.class);
+                        Intent intent = new Intent(MainActivity.this, JadwalPoliRegulerBesok.class);
                         startActivity(intent);
                         MainActivity.this.finish();
 

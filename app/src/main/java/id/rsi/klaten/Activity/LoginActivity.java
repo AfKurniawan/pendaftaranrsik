@@ -29,6 +29,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import id.rsi.klaten.Fcm.FcmVolley;
 import id.rsi.klaten.Tools.Tools;
 import id.rsi.klaten.Utils.Const;
 import id.rsi.klaten.Utils.SessionManager;
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
         if (sessionManager.isUserLogin()) {
-            Intent i = new Intent(this, JadwalListActivity.class);
+            Intent i = new Intent(this, DashboardActivity.class);
             startActivity(i);
             finish();
 
@@ -104,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else if (etPassword.getText().toString().equals("")) {
                         Toast.makeText(LoginActivity.this, "Please enter your password...", Toast.LENGTH_SHORT).show();
                     }  else {
-                        userLogin();
+                        sendToken();
                     }
 
                 }
@@ -133,6 +137,68 @@ public class LoginActivity extends AppCompatActivity {
                 keRegisterActivity();
             }
         });
+    }
+
+
+    public void sendToken() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        final String token = SessionManager.getInstance(this).getDeviceToken();
+        final String email = etEmail.getText().toString();
+
+        if (token == null) {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_REGISTER_TOKEN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d("Pesan dari Server", response);
+
+                        progressBar.setVisibility(View.GONE);
+
+                        try {
+
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+
+
+                            userLogin();
+
+                            //menyimpan value id user ke shared preference
+                            String iduser = etEmail.getText().toString();
+                            mEditor.putString("userEmail", iduser);
+                            mEditor.commit();
+
+                        } catch (
+                                JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
+
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     public void initSharedPref(){
@@ -261,11 +327,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(response.equalsIgnoreCase("Berhasilnull")) {
 
+                            sendToken();
+
                             progressBar.setVisibility(View.GONE);
 
                             finish();
 
-                            Intent intent = new Intent(LoginActivity.this, JadwalListActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                             startActivity(intent);
                             finish();
 
@@ -339,7 +407,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             finish();
 
-                            Intent intent = new Intent(LoginActivity.this, JadwalListActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
 
                             startActivity(intent);
                             finish();

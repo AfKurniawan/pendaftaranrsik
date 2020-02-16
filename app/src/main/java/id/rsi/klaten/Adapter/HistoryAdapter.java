@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,8 +34,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import id.rsi.klaten.Activity.DetailHistoryActivity;
@@ -67,10 +72,20 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
         Booking bk = mItems.get(position);
 
 
-        //holder.etStatusDelete.setText("0");
+
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_YEAR, 0);
+        Date hariini = today.getTime();
+
+        SimpleDateFormat sdfToday = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String tanggalHariIni = sdfToday.format(hariini);
+
+
         holder.tvNamaPasien.setText(bk.getNama_pasien());
         holder.etIdBooking.setText(bk.getId_booking());
-        holder.tvNoAntrian.setText(bk.getNo_antrian());
+
+
+
 
         if (bk.getNo_barcode().equals("")){
 
@@ -97,16 +112,27 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
         holder.tvHari.setText(bk.getHari()+", "+ bk.getJam());
         holder.tvPenjamin.setText(bk.getPenjamin());
 
-        if(bk.getPenjamin().equals("Pilih Penjamin")){
 
-            holder.tvPenjamin.setVisibility(View.GONE);
-            holder.tvJnsdaftar.setText("Poli " + bk.getJns_daftar());
+
+
+        if(tanggalHariIni.equals(bk.getTgl_booking())){
+
+            holder.tvJnsdaftar.setText(bk.getJns_daftar());
+            holder.tvJnsdaftar.getResources().getColor(R.color.blue_A700);
+            holder.tvNoAntrian.setText("");
+
+
 
         } else {
 
             holder.tvPenjamin.setVisibility(View.VISIBLE);
-            holder.tvJnsdaftar.setVisibility(View.GONE);
+            holder.tvJnsdaftar.setText(bk.getJns_daftar());
+            holder.tvJnsdaftar.getResources().getColor(R.color.blue_A700);
+            //holder.etNoBarcode.setVisibility(View.VISIBLE);
+            holder.tvNoAntrian.setText(bk.getNo_antrian());
         }
+
+
 
 
 
@@ -129,8 +155,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
 
 
     class HolderData extends RecyclerView.ViewHolder {
-        TextView tvNamaPasien, tvNoRm, tvTglBooking, tvJam, tvHari, tvNoAntrian,  tvNamaPoli, tvNamaDokter, tvPenjamin, tvJnsdaftar;
-        EditText etStatusDelete, etIdBooking, etNoBarcode;
+        TextView tvNamaPasien, tvNoRm, tvTglBooking, tvJam, tvHari, tvNoAntrian,  tvNamaPoli, tvNamaDokter, tvPenjamin, tvJnsdaftar, etNoBarcode;
+        EditText etStatusDelete, etIdBooking;
         ImageView ivQrCode;
         LinearLayout btnLayout;
         Booking bk;
@@ -156,8 +182,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HolderDa
 
             tvJnsdaftar = view.findViewById(R.id.tv_jns_daftar);
             tvNoAntrian = (TextView) view.findViewById(R.id.tv_no_antrian);
+            //tvNoAntrian.setVisibility(View.GONE);
 
-            etNoBarcode = (EditText) view.findViewById(R.id.et_no_barcode);
+            etNoBarcode = (TextView) view.findViewById(R.id.et_no_barcode);
 
             tvNamaPoli = (TextView) view.findViewById(R.id.tv_nama_poli);
             tvNamaDokter = (TextView) view.findViewById(R.id.tv_nama_dokter2);

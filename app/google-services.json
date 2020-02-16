@@ -1,39 +1,45 @@
 {
   "project_info": {
-    "project_number": "105247857974",
-    "firebase_url": "https://rsi-klaten-63b25.firebaseio.com",
-    "project_id": "rsi-klaten-63b25",
-    "storage_bucket": "rsi-klaten-63b25.appspot.com"
+    "project_number": "849743035867",
+    "firebase_url": "https://rsik-220401.firebaseio.com",
+    "project_id": "rsik-220401",
+    "storage_bucket": "rsik-220401.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:105247857974:android:9a0facfcb2eb7417",
+        "mobilesdk_app_id": "1:849743035867:android:9a0facfcb2eb7417",
         "android_client_info": {
           "package_name": "id.rsi.klaten.rsik"
         }
       },
       "oauth_client": [
         {
-          "client_id": "105247857974-khto2im7a9hh6knhrefid6u7db3laj3d.apps.googleusercontent.com",
+          "client_id": "849743035867-35v7g4ieh6ocgms47l4iijognggjpaml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.rsi.klaten.rsik",
+            "certificate_hash": "42e86b1e61ae86509b649d3c7f89f7fa1e2aa172"
+          }
+        },
+        {
+          "client_id": "849743035867-s3rd94fejbl3hpk6kf0gu447tkriuovs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBiItoxJE0f_ffCqEiRNZqIQZZ_azI7JD0"
+          "current_key": "AIzaSyD9qYWgr9U7aIkQXVlczFJ2SDuY-5tbbaY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849743035867-s3rd94fejbl3hpk6kf0gu447tkriuovs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -111,7 +111,7 @@ public class AllJadwalActivity extends AppCompatActivity implements SearchView.O
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.toolbar_all_jadwal);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.green_A400);
+        //Tools.setSystemBarColor(this, R.color.blue_700);
     }
 
 

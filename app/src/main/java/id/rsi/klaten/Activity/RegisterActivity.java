@@ -82,10 +82,10 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
-    SharedPreferences sp;
+    private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
-    private SessionManager sessionManager;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,18 +97,12 @@ public class RegisterActivity extends AppCompatActivity {
         keDokterListActivity();
         keLoginActivity();
         initGoogleRegister();
-        //registerData();
-        initSharedPref();
+
+
+        sessionManager = new SessionManager(getApplicationContext());
 
     }
 
-    public void initSharedPref(){
-
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
-        sp = getSharedPreferences("rsiklaten", Context.MODE_PRIVATE);
-        mEditor = sp.edit();
-
-    }
 
     public void initGoogleRegister(){
 
@@ -169,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
     }
+
 
     private void initForm(){
 
@@ -355,9 +350,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if(ServerResponse.equalsIgnoreCase("Berhasilnull")) {
 
-
+                            sessionManager.setSavedUserName(etEmail.getText().toString());
 
                             SuccessDialog();
+
+
 
                         }else{
 
@@ -450,6 +447,8 @@ public class RegisterActivity extends AppCompatActivity {
                         }
 
                         if(ServerResponse.equalsIgnoreCase("Berhasilnull")) {
+
+                            sessionManager.setSavedUserName(etGmail.getText().toString());
 
                             SuccessDialog();
 
@@ -553,17 +552,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String useremail = etEmail.getText().toString();
-                mEditor.putString(getString(R.string.login_email), useremail);
-                mEditor.commit();
 
-                String userpass = etEmail.getText().toString();
-                mEditor.putString(getString(R.string.password), userpass);
-                mEditor.commit();
-
-
-                Intent intent = new Intent(RegisterActivity.this, JadwalListActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, DashboardActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

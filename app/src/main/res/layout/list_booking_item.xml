@@ -59,7 +59,7 @@
                 android:textColor="@color/green_A700"
                 android:visibility="gone" />-->
 
-            <EditText
+            <TextView
                 android:id="@+id/et_no_barcode"
                 android:textAlignment="center"
                 android:hint="no barcode"
@@ -67,8 +67,7 @@
                 android:textColor="@color/green_A700"
                 android:background="@color/transparent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:focusable="false"/>
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_width="0dp"

@@ -15,12 +15,25 @@ public class SessionManager {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_IS_LOGIN = "isLogin";
 
+    private static final String SHARED_PREF_NAME = "FCMSharedPref";
+    private static final String TAG_TOKEN = "tagtoken";
+
+    private static SessionManager mInstance;
+
+
     // Constructor
     @SuppressLint("CommitPrefEdits")
     public SessionManager(Context context) {
         this.context = context;
         pref = this.context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
+    }
+
+    public static synchronized SessionManager getInstance(Context context) {
+        if (mInstance == null) {
+            mInstance = new SessionManager(context);
+        }
+        return mInstance;
     }
 
     //save user name to SharedPref
@@ -37,6 +50,21 @@ public class SessionManager {
     public void setSavedPassword(String pass) {
         editor.putString(KEY_PASSWORD, pass);
         editor.commit();
+    }
+
+
+    public boolean saveDeviceToken(String token){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(TAG_TOKEN, token);
+        editor.apply();
+        return true;
+    }
+
+    //this method will fetch the device token from shared preferences
+    public String getDeviceToken(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return  sharedPreferences.getString(TAG_TOKEN, null);
     }
 
     public boolean isUserLogin() {

@@ -120,7 +120,17 @@
 
                     <EditText
                         android:id="@+id/et_praktek"
-                        android:hint="Praktek"
+                        android:hint="KODE PRAKTEK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:background="@android:color/transparent"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_800"/>
+
+                    <EditText
+                        android:id="@+id/et_hidden_praktek"
+                        android:hint="HIDDEN PRAKTEK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:focusable="false"
@@ -133,6 +143,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:focusable="false"
+                        android:background="@android:color/transparent"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/grey_800"/>
+
+                    <EditText
+                        android:id="@+id/et_hari_hide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="hiddenDay"
                         android:background="@android:color/transparent"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/grey_800"/>
@@ -510,6 +530,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:text="Pilih Tipe Poli"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textColor="@color/grey_40"/>

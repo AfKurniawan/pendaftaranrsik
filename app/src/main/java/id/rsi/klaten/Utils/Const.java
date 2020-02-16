@@ -72,6 +72,8 @@ public class Const {
 
     public static final String UPDATE_STATUS_URL = ROOT_URL + "search/delete_history_booking.php";
 
+    public static String URL_REGISTER_TOKEN = ROOT_URL + "fcm/RegisterDevice.php";
+
 
 
 
@@ -103,6 +105,23 @@ public class Const {
     public final static int QRcodeWidth = 500 ;
 
     private static final String IMAGE_DIRECTORY = "/Rsik";
+
+    //FIREBASE
+
+    // global topic to receive app wide push notifications
+    public static final String TOPIC_GLOBAL = "global";
+
+    // broadcast receiver intent filters
+    public static final String REGISTRATION_COMPLETE = "registrationComplete";
+    public static final String PUSH_NOTIFICATION = "pushNotification";
+
+    // id to handle the notification in the notification tray
+    public static final int NOTIFICATION_ID = 100;
+    public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
+
+    public static final String SHARED_PREF = "ah_firebase";
+
+    public static final String CHANNEL_ID = "my_channel_01";
 
 
 }

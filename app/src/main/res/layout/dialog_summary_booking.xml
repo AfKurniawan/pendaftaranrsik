@@ -273,6 +273,22 @@
                 android:textColor="@color/grey_60"/>
 
             <EditText
+                android:id="@+id/et_jns_daftar_dalog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_contract"
+                android:gravity="left"
+                android:textSize="13dp"
+                android:drawablePadding="@dimen/spacing_mlarge"
+                android:layout_marginLeft="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:text="Jenis Daftar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/grey_60"/>
+
+
+            <EditText
                 android:id="@+id/et_param_bpjs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -382,7 +398,7 @@
                 android:layout_marginLeft="@dimen/spacing_middle"
                 android:background="@android:color/transparent"
                 android:focusable="false"
-                android:text="Jam"
+                android:text="Tanggal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/grey_60"/>
 
@@ -462,6 +478,7 @@
                 android:text="@string/id_dokter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/grey_60"/>
+
 
             <EditText
                 android:id="@+id/et_id_poli_dialog2"

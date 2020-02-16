@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -72,7 +71,7 @@ public class GantiPasswordActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("GANTI PASSWORD");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Tools.setSystemBarColor(this, R.color.green_A400);
+        Tools.setSystemBarColor(this, R.color.blue_A700);
 
     }
 
@@ -259,7 +258,7 @@ public class GantiPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent listBooking = new Intent(GantiPasswordActivity.this, JadwalListActivity.class);
+                Intent listBooking = new Intent(GantiPasswordActivity.this, JadwalPoliRegulerBesok.class);
                 startActivity(listBooking);
                 finish();
 
