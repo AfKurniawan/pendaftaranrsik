@@ -42,6 +42,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import id.rsi.klaten.Fcm.FcmVolley;
 import id.rsi.klaten.Utils.Const;
 import id.rsi.klaten.Utils.SessionManager;
 import id.rsi.klaten.Utils.VolleySingleton;
@@ -87,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
 
+    SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +101,17 @@ public class RegisterActivity extends AppCompatActivity {
         keLoginActivity();
         initGoogleRegister();
 
+        initSharedPref();
 
         sessionManager = new SessionManager(getApplicationContext());
+
+    }
+
+    public void initSharedPref(){
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp = getSharedPreferences("rsiklaten", Context.MODE_PRIVATE);
+        mEditor = sp.edit();
 
     }
 
@@ -162,6 +174,121 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         }
+    }
+
+
+    public void sendToken() {
+
+        final String token = SessionManager.getInstance(this).getDeviceToken();
+        final String email = etEmail.getText().toString();
+
+        if (token == null) {
+           // progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_REGISTER_TOKEN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d("Pesan dari Server", response);
+
+
+
+                        try {
+
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(RegisterActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+
+                            //menyimpan value id user ke shared preference
+                            String iduser = etEmail.getText().toString();
+                            mEditor.putString("userEmail", iduser);
+                            mEditor.commit();
+
+                            SuccessDialog();
+
+                        } catch (
+                                JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RegisterActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
+
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    public void sendTokenGmail() {
+
+        final String token = SessionManager.getInstance(this).getDeviceToken();
+        final String gmail = etGmail.getText().toString();
+
+        if (token == null) {
+            // progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_REGISTER_TOKEN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d("Pesan dari Server", response);
+
+
+
+                        try {
+
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(RegisterActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+
+                            //menyimpan value id user ke shared preference
+                            String iduser = etGmail.getText().toString();
+                            mEditor.putString("userEmail", iduser);
+                            mEditor.commit();
+
+                            SuccessDialog();
+
+                        } catch (
+                                JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RegisterActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", gmail);
+                params.put("token", token);
+                return params;
+            }
+        };
+
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
     }
 
 
@@ -340,6 +467,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                         pd.setVisibility(View.GONE);
 
+
+
                         try {
 
                             JSONObject res = new JSONObject(ServerResponse);
@@ -352,7 +481,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             sessionManager.setSavedUserName(etEmail.getText().toString());
 
-                            SuccessDialog();
+                            sendToken();
+
+
 
 
 
@@ -450,7 +581,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                             sessionManager.setSavedUserName(etGmail.getText().toString());
 
-                            SuccessDialog();
+
+                            //SuccessDialog();
+                            sendTokenGmail();
+
+
 
                         }else{
 

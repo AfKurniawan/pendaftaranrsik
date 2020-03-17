@@ -66,12 +66,12 @@ public class GantiPasswordActivity extends AppCompatActivity {
 
     private void initToolbar() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_ganti_password);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("GANTI PASSWORD");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        Tools.setSystemBarColor(this, R.color.blue_A700);
+        Tools.setSystemBarColor(this, R.color.green_900);
 
     }
 

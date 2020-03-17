@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:scaleType="fitEnd"
-            android:src="@drawable/medic" />
+            android:src="@drawable/medication" />
     </LinearLayout>
 
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/green_A700"
+            app:contentScrim="@color/green_800"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
@@ -50,12 +50,20 @@
                 android:layout_height="match_parent"
                 android:background="@color/overlay_dark_40" />
 
-            <android.support.v7.widget.Toolbar
+            <!--<android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:contentInsetStartWithNavigation="0dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

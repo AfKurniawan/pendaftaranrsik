@@ -23,8 +23,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String s) {
         Log.e("NEW_TOKEN", s);
-
-
         Log.d("Token KAMU ", s);
     }
 

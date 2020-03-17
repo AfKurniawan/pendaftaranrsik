@@ -701,7 +701,7 @@ public class MainActivity extends AppCompatActivity {
 
                 etHiddenPraktek.setText("Reguler");
             }
-           // etHiddenPraktek.setVisibility(View.GONE);
+            etHiddenPraktek.setVisibility(View.GONE);
             etIdJadwal.setText(intent_idJadwal);
             etHari.setText(intent_hari+", "+intent_jam);
             etHariHidden.setText(intent_hari);

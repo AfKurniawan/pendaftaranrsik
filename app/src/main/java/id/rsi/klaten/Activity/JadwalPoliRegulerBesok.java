@@ -157,7 +157,7 @@ public class JadwalPoliRegulerBesok extends AppCompatActivity implements SearchV
 
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_regular_besok);
         //toolbar.setBackgroundColor(Color.RED);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
@@ -166,6 +166,17 @@ public class JadwalPoliRegulerBesok extends AppCompatActivity implements SearchV
         actionBar.setTitle("Poli Reguler");
         Tools.setSystemBarColor(this, R.color.overlay_dark_40);
     }
+
+//    private void initToolbar() {
+//        toolbar = (Toolbar) findViewById(R.id.toolbar_regular_besok);
+//        setSupportActionBar(toolbar);
+//        actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
+//        //actionBar.setTitle("History Pendaftaran Pasien");
+//        getSupportActionBar().setTitle(R.string.toolbar_history_list);
+//        Tools.setSystemBarColor(this, R.color.overlay_dark_40);
+//    }
 
     public void initSwipeRefresh(){
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -238,6 +249,13 @@ public class JadwalPoliRegulerBesok extends AppCompatActivity implements SearchV
                     Intent intent = new Intent(JadwalPoliRegulerBesok.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
+
+                } else if (id == R.id.nav_antrian){
+
+                    Intent intent = new Intent(JadwalPoliRegulerBesok.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
+
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();
@@ -718,10 +736,13 @@ public class JadwalPoliRegulerBesok extends AppCompatActivity implements SearchV
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), ((AppCompatButton) v).getText().toString() + " Clicked", Toast.LENGTH_SHORT).show();
 
+                sessionManager.clearSession();
 
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    finish();
+
                 } catch (android.content.ActivityNotFoundException anfe) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 }

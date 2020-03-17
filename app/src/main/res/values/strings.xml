@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="version">1.7.5</string>
+    <string name="version">1.7.6</string>
 
 
     <string name="app_name">RSI Klaten</string>
@@ -76,5 +76,6 @@
     <string name="surat_kt">Surat Kontrol</string>
     <string name="nomor_antrian_idjadwal_iddokter">Antrian-idjadwal-iddokter-norm</string>
     <string name="error_update">Silahkan update versi aplikasi untuk dapat menggunakan kembali layanan kami</string>
+    <string name="toolbar_webview">Antrian</string>
 </resources>
 

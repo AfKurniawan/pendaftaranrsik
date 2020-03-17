@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>Ecw Event</title>
+    <link rel="stylesheet" href="css/custom.css" type="text/css">
+
+</head>
+
+<body>
+
+
+<div class="box">
+
+    <div class="box__ghost">
+
+        <img width="80px" src="images/logo_round_bg.png">
+
+
+    </div>
+
+    <div class="box__description">
+
+        <div class="box__description-container">
+            <div class="box__description-title">Maaf</div>
+            <div class="box__description-text"><p style="color:#ffffff; text-align:center">Halaman ini sedang mengalami gangguan atau koneksi internet anda terganggu</p></div>
+
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+
+<script type="text/javascript">
+        //based on https://dribbble.com/shots/3913847-404-page
+
+            var pageX = $(document).width();
+            var pageY = $(document).height();
+            var mouseY=0;
+            var mouseX=0;
+
+            $(document).mousemove(function( event ) {
+              //verticalAxis
+              mouseY = event.pageY;
+              yAxis = (pageY/2-mouseY)/pageY*300;
+              //horizontalAxis
+              mouseX = event.pageX / -pageX;
+              xAxis = -mouseX * 100 - 100;
+
+              $('.box__ghost-eyes').css({ 'transform': 'translate('+ xAxis +'%,-'+ yAxis +'%)' });
+
+              //console.log('X: ' + xAxis);
+
+            });
+    </script>
+</html>

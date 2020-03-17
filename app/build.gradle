@@ -7,8 +7,8 @@ android {
         applicationId "id.rsi.klaten.rsik"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 50
-        versionName "1.7.5"
+        versionCode 51
+        versionName "1.7.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { debug { assets.srcDirs = ['src/debug/assets', 'src/release/assets/'] } }
 }
 
 dependencies {

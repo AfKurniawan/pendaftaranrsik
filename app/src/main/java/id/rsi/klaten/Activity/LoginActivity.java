@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
         if (sessionManager.isUserLogin()) {
-            Intent i = new Intent(this, DashboardActivity.class);
+            Intent i = new Intent(this, JadwalPoliRegulerBesok.class);
             startActivity(i);
             finish();
 
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else if (etPassword.getText().toString().equals("")) {
                         Toast.makeText(LoginActivity.this, "Please enter your password...", Toast.LENGTH_SHORT).show();
                     }  else {
-                        sendToken();
+                        userLogin();
                     }
 
                 }
@@ -140,6 +140,64 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    public void sendTokenGmail() {
+
+        final String token = SessionManager.getInstance(this).getDeviceToken();
+        final String gmail = etGoogleEmail.getText().toString();
+
+        if (token == null) {
+            // progressBar.setVisibility(View.GONE);
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Const.URL_REGISTER_TOKEN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d("Pesan dari Server", response);
+
+
+
+                        try {
+
+                            JSONObject obj = new JSONObject(response);
+                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+
+                            //menyimpan value id user ke shared preference
+                            String iduser = etGoogleEmail.getText().toString();
+                            mEditor.putString("userEmail", iduser);
+                            mEditor.commit();
+
+
+
+                        } catch (
+                                JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", gmail);
+                params.put("token", token);
+                return params;
+            }
+        };
+
+        FcmVolley.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+
     public void sendToken() {
 
         progressBar.setVisibility(View.VISIBLE);
@@ -149,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (token == null) {
             progressBar.setVisibility(View.GONE);
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -165,10 +223,8 @@ public class LoginActivity extends AppCompatActivity {
                         try {
 
                             JSONObject obj = new JSONObject(response);
-                            Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
-
-
-                            userLogin();
+                           // Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_LONG).show();
+                            Log.d("Token", response);
 
                             //menyimpan value id user ke shared preference
                             String iduser = etEmail.getText().toString();
@@ -333,7 +389,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             finish();
 
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, JadwalPoliRegulerBesok.class);
                             startActivity(intent);
                             finish();
 
@@ -404,6 +460,8 @@ public class LoginActivity extends AppCompatActivity {
                         if(response.equalsIgnoreCase("Berhasilnull")) {
 
                             progressBar.setVisibility(View.GONE);
+
+                            sendTokenGmail();
 
                             finish();
 

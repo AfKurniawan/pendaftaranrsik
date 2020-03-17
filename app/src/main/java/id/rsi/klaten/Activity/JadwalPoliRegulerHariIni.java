@@ -201,7 +201,7 @@ public class JadwalPoliRegulerHariIni extends AppCompatActivity implements Searc
 
 
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_regular_hari_ini);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -280,6 +280,12 @@ public class JadwalPoliRegulerHariIni extends AppCompatActivity implements Searc
                     Intent intent = new Intent(JadwalPoliRegulerHariIni.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
+
+                } else if (id == R.id.nav_antrian){
+
+                    Intent intent = new Intent(JadwalPoliRegulerHariIni.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();

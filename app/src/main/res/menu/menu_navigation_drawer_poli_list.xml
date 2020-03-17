@@ -27,6 +27,11 @@
                                     android:icon="@drawable/ic_schedule"
                                     android:title="Semua Jadwal" />
 
+                                <item
+                                    android:id="@+id/nav_antrian"
+                                    android:icon="@drawable/ic_schedule"
+                                    android:title="Lihat Antrian" />
+
                             <item
                                 android:id="@+id/nav_home"
                                 android:icon="@drawable/ic_dashboard"

@@ -56,11 +56,11 @@ public class DetailHistoryActivity extends AppCompatActivity {
 
     private void initToolbar() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail_history);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("DETAIL PENDAFTARAN");
+        getSupportActionBar().setTitle("DETAIL HISTORY");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Tools.setSystemBarColor(this, R.color.green_A400);
+        Tools.setSystemBarColor(this, R.color.green_800);
     }
 
 

@@ -212,6 +212,14 @@ public class HistoryListActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(HistoryListActivity.this, DashboardActivity.class);
                     startActivity(intent);
+                    finish();
+
+                } else if (id == R.id.nav_antrian){
+
+                    Intent intent = new Intent(HistoryListActivity.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
+
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();

@@ -72,7 +72,11 @@ public class Const {
 
     public static final String UPDATE_STATUS_URL = ROOT_URL + "search/delete_history_booking.php";
 
-    public static String URL_REGISTER_TOKEN = ROOT_URL + "fcm/RegisterDevice.php";
+    public static String URL_REGISTER_TOKEN = "http://103.247.9.253/booking_dokter/notifikasi/RegisterDevice.php";
+
+    public static String URL_ANTRIAN_WEBVIEW = "http://103.247.9.253/antri/";
+
+    //public static String URL_ANTRIAN_WEBVIEW = "http://192.168.43.239:3000";
 
 
 

@@ -44,7 +44,7 @@
                 android:fitsSystemWindows="true"
                 app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
                 app:titleEnabled="false"
-                app:contentScrim="@color/blue_A700"
+                app:contentScrim="@color/green_800"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <ImageView
@@ -64,7 +64,7 @@
 
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
+                    android:id="@+id/toolbar_regular_hari_ini"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"

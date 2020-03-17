@@ -149,7 +149,7 @@ public class JadwalPoliEksekutifBesok extends AppCompatActivity implements Searc
 
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_eksekutif_besok);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -229,6 +229,12 @@ public class JadwalPoliEksekutifBesok extends AppCompatActivity implements Searc
                     Intent intent = new Intent(JadwalPoliEksekutifBesok.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
+
+                } else if (id == R.id.nav_antrian){
+
+                    Intent intent = new Intent(JadwalPoliEksekutifBesok.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();

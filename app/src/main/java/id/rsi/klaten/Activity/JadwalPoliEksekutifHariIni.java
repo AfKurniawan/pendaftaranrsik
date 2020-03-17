@@ -148,7 +148,7 @@ public class JadwalPoliEksekutifHariIni extends AppCompatActivity implements Sea
 
 
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_eksekutif_hari_ini);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -223,11 +223,18 @@ public class JadwalPoliEksekutifHariIni extends AppCompatActivity implements Sea
                     Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
+
                 } else if (id == R.id.nav_home){
 
                     Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, DashboardActivity.class);
                     startActivity(intent);
                     finish();
+
+                } else if (id == R.id.nav_antrian){
+
+                    Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
 
                 }  else if (id == R.id.nav_logout){
                     logoutConfirmDialog();

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:scaleType="fitEnd"
-            android:src="@drawable/medic" />
+            android:src="@drawable/medication" />
     </LinearLayout>
 
 
@@ -188,7 +188,7 @@
                             android:fontFamily="@font/roboto_regular"
                             android:text="Messages Notification"
                             android:textColor="#5E5E5E"
-                            android:textSize="16dp" />
+                            android:textSize="14dp" />
 
 
                     </LinearLayout>
