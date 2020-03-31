@@ -1,6 +1,9 @@
 package id.rsi.klaten.Fcm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -19,6 +22,9 @@ import id.rsi.klaten.Activity.NotifikasiActivity;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+
+    SharedPreferences sp;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     public void onNewToken(String s) {
@@ -45,6 +51,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     //We are passing the JSONObject that is received from
     //firebase cloud messaging
     private void sendPushNotification(JSONObject json) {
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        sp = getSharedPreferences("rsiklaten", Context.MODE_PRIVATE);
+        mEditor = sp.edit();
         //optionally we can display the json into log
         Log.e(TAG, "Notification JSON " + json.toString());
         try {
@@ -63,10 +73,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //creating an intent for the notification
             //Intent intent = new Intent(getApplicationContext(), NotifikasiActivity.class);
 
+
+            mEditor.putString("messages", message);
+            mEditor.commit();
+
+            mEditor.putString("title", title);
+            mEditor.commit();
+
             Intent intent = new Intent(this, NotifikasiActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("title", title);
             intent.putExtra("message", message);
+
+
+
+
+
+
+
+
 
             //if there is no image
             if(imageUrl.equals("")){

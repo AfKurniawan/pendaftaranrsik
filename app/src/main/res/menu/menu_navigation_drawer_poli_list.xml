@@ -29,13 +29,13 @@
 
                                 <item
                                     android:id="@+id/nav_antrian"
-                                    android:icon="@drawable/ic_schedule"
+                                    android:icon="@drawable/ic_clock"
                                     android:title="Lihat Antrian" />
 
-                            <item
-                                android:id="@+id/nav_home"
-                                android:icon="@drawable/ic_dashboard"
-                                android:title="Halaman Awal" />
+<!--                            <item-->
+<!--                                android:id="@+id/nav_home"-->
+<!--                                android:icon="@drawable/ic_dashboard"-->
+<!--                                android:title="Halaman Awal" />-->
                         </group>
                 </menu>
         </item>
@@ -49,6 +49,12 @@
                                                     android:id="@+id/nav_history"
                                                     android:icon="@drawable/ic_history"
                                                     android:title="Lihat History" />
+
+
+                                               <item
+                                                   android:id="@+id/nav_notifikasi"
+                                                   android:icon="@drawable/ic_alert"
+                                                   android:title="Notifikasi" />
 
 
 

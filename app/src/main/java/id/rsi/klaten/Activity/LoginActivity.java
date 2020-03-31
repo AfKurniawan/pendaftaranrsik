@@ -465,8 +465,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             finish();
 
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-
+                            Intent intent = new Intent(LoginActivity.this, JadwalPoliRegulerBesok.class);
                             startActivity(intent);
                             finish();
 

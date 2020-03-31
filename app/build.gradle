@@ -7,8 +7,8 @@ android {
         applicationId "id.rsi.klaten.rsik"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 51
-        versionName "1.7.6"
+        versionCode 52
+        versionName "1.7.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -61,8 +61,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/PhotoUtil.jar')
-
-
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.android.gms:play-services-auth:15.0.1'

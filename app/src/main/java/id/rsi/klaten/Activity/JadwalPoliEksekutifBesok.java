@@ -166,6 +166,9 @@ public class JadwalPoliEksekutifBesok extends AppCompatActivity implements Searc
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
 
+                //cekVersion();
+                //filterPoli();
+                mItems.clear();
                 cekVersion();
                 mRecyclerView.setVisibility(View.GONE);
             }
@@ -214,6 +217,10 @@ public class JadwalPoliEksekutifBesok extends AppCompatActivity implements Searc
                     Intent intent = new Intent(JadwalPoliEksekutifBesok.this, PilihHariPoliEksekutif.class);
                     startActivity(intent);
 
+                }else if (id == R.id.nav_notifikasi){
+                    Intent intent = new Intent(JadwalPoliEksekutifBesok.this, NotifikasiActivity.class);
+                    startActivity(intent);
+
 
                 } else if (id == R.id.nav_all_jadwal_poli) {
                     Intent intent = new Intent(JadwalPoliEksekutifBesok.this, AllJadwalActivity.class);
@@ -224,11 +231,11 @@ public class JadwalPoliEksekutifBesok extends AppCompatActivity implements Searc
                     Intent intent = new Intent(JadwalPoliEksekutifBesok.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
-                } else if (id == R.id.nav_home){
-
-                    Intent intent = new Intent(JadwalPoliEksekutifBesok.this, DashboardActivity.class);
-                    startActivity(intent);
-                    finish();
+//                } else if (id == R.id.nav_home){
+//
+//                    Intent intent = new Intent(JadwalPoliEksekutifBesok.this, DashboardActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
                 } else if (id == R.id.nav_antrian){
 

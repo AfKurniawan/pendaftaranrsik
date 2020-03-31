@@ -218,6 +218,7 @@ public class JadwalPoliRegulerHariIni extends AppCompatActivity implements Searc
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
 
+                mItems.clear();
                 cekVersion();
                 mRecyclerView.setVisibility(View.GONE);
             }
@@ -275,15 +276,19 @@ public class JadwalPoliRegulerHariIni extends AppCompatActivity implements Searc
                     Intent intent = new Intent(JadwalPoliRegulerHariIni.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
-                } else if (id == R.id.nav_home){
-
-                    Intent intent = new Intent(JadwalPoliRegulerHariIni.this, DashboardActivity.class);
-                    startActivity(intent);
-                    finish();
+//                } else if (id == R.id.nav_home){
+//
+//                    Intent intent = new Intent(JadwalPoliRegulerHariIni.this, DashboardActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
                 } else if (id == R.id.nav_antrian){
 
                     Intent intent = new Intent(JadwalPoliRegulerHariIni.this, WebAntrianActivity.class);
+                    startActivity(intent);
+
+                }else if (id == R.id.nav_notifikasi){
+                    Intent intent = new Intent(JadwalPoliRegulerHariIni.this, NotifikasiActivity.class);
                     startActivity(intent);
 
 

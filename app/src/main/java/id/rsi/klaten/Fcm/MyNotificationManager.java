@@ -149,6 +149,7 @@ public class MyNotificationManager {
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
                     .setContentText(message)
+                    .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                     .build();
 
 
@@ -195,6 +196,7 @@ public class MyNotificationManager {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
                 .setContentText(message)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .build();
 
 

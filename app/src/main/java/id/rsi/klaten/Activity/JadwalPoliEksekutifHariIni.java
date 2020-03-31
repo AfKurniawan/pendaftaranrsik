@@ -165,6 +165,7 @@ public class JadwalPoliEksekutifHariIni extends AppCompatActivity implements Sea
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
 
+                mItems.clear();
                 cekVersion();
                 mRecyclerView.setVisibility(View.GONE);
             }
@@ -224,11 +225,15 @@ public class JadwalPoliEksekutifHariIni extends AppCompatActivity implements Sea
                     startActivity(intent);
 
 
-                } else if (id == R.id.nav_home){
+//                } else if (id == R.id.nav_home){
+//
+//                    Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, DashboardActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
-                    Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, DashboardActivity.class);
+                }else if (id == R.id.nav_notifikasi){
+                    Intent intent = new Intent(JadwalPoliEksekutifHariIni.this, NotifikasiActivity.class);
                     startActivity(intent);
-                    finish();
 
                 } else if (id == R.id.nav_antrian){
 

@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_alert" />
-                            <entry key="sourceFile" value="D:\I-AM-I\ANDROID\RSIK\icon\alert.svg" />
+                            <entry key="outputName" value="ic_clock" />
+                            <entry key="sourceFile" value="D:\I-AM-I\ANDROID\RSIK\icon\clock.svg" />
                           </map>
                         </option>
                       </PersistentState>

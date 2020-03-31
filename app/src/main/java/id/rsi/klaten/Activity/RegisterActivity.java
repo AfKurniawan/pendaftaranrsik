@@ -688,7 +688,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(RegisterActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, JadwalPoliRegulerBesok.class);
                 startActivity(intent);
                 finish();
             }

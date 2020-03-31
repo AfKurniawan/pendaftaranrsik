@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,15 +36,14 @@ public class NotifikasiActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.tvTitle);
         txtMessage = findViewById(R.id.tvMessages);
 
-        String message = getIntent().getStringExtra("message");
-
-        mEditor.putString("messages", message);
-        mEditor.commit();
-
-
-        String title = getIntent().getStringExtra("title");
-        mEditor.putString("title", title);
-        mEditor.commit();
+//        String message = getIntent().getStringExtra("message");
+//        mEditor.putString("messages", message);
+//        mEditor.commit();
+//
+//
+//        String title = getIntent().getStringExtra("title");
+//        mEditor.putString("title", title);
+//        mEditor.commit();
 
 
         String judul = sp.getString("title", "");
@@ -51,6 +51,9 @@ public class NotifikasiActivity extends AppCompatActivity {
 
         String pesan = sp.getString("messages", "");
         txtMessage.setText(pesan);
+
+        Log.e("Message", pesan);
+        Log.e("Judul", judul);
 
 
 

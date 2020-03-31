@@ -77,6 +77,10 @@ public class DashboardActivity extends AppCompatActivity {
                     Intent intent = new Intent(DashboardActivity.this, PilihHariPoliReguler.class);
                     startActivity(intent);
 
+                }else if (id == R.id.nav_notifikasi){
+                    Intent intent = new Intent(DashboardActivity.this, NotifikasiActivity.class);
+                    startActivity(intent);
+
                 } else if(id == R.id.nav_exec) {
 
                     Intent intent = new Intent(DashboardActivity.this, PilihHariPoliEksekutif.class);
@@ -92,10 +96,10 @@ public class DashboardActivity extends AppCompatActivity {
                     Intent intent = new Intent(DashboardActivity.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
-                } else if (id == R.id.nav_home){
-
-                    Intent intent = new Intent(DashboardActivity.this, DashboardActivity.class);
-                    startActivity(intent);
+//                } else if (id == R.id.nav_home){
+//
+//                    Intent intent = new Intent(DashboardActivity.this, DashboardActivity.class);
+//                    startActivity(intent);
 
                 } else if (id == R.id.nav_antrian){
 

@@ -198,6 +198,10 @@ public class HistoryListActivity extends AppCompatActivity {
                     Intent intent = new Intent(HistoryListActivity.this, PilihHariPoliEksekutif.class);
                     startActivity(intent);
 
+                }else if (id == R.id.nav_notifikasi){
+                    Intent intent = new Intent(HistoryListActivity .this, NotifikasiActivity.class);
+                    startActivity(intent);
+
 
                 } else if (id == R.id.nav_all_jadwal_poli) {
                     Intent intent = new Intent(HistoryListActivity.this, AllJadwalActivity.class);
@@ -208,11 +212,11 @@ public class HistoryListActivity extends AppCompatActivity {
                     Intent intent = new Intent(HistoryListActivity.this, GantiPasswordActivity.class);
                     startActivity(intent);
 
-                } else if (id == R.id.nav_home){
-
-                    Intent intent = new Intent(HistoryListActivity.this, DashboardActivity.class);
-                    startActivity(intent);
-                    finish();
+//                } else if (id == R.id.nav_home){
+//
+//                    Intent intent = new Intent(HistoryListActivity.this, DashboardActivity.class);
+//                    startActivity(intent);
+//                    finish();
 
                 } else if (id == R.id.nav_antrian){
 
